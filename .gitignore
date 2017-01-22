@@ -8,4 +8,3 @@ run/
 *.swp
 /test/fixtures/apps/model-app/run/
 /test/fixtures/apps/model-app/logs/
-/.github/PULL_REQUEST_TEMPLATE.md
