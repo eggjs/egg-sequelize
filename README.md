@@ -47,7 +47,7 @@ exports.sequelize = {
   username: 'root',
   password: '',
   database: 'test',
-  dialect: 'mysql'|'mariadb'|'postgres'|'mssql'
+  dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
 };
 ```
 
