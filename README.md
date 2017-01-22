@@ -27,8 +27,14 @@ Egg's sequelize plugin.
 ## Install
 
 ```bash
-$ npm i egg-security
+$ npm i --save egg-sequelize
+ 
+# And one of the following:
+$ npm install --save pg pg-hstore
+$ npm install --save mysql # For both mysql and mariadb dialects
+$ npm install --save tedious # MSSQL
 ```
+
 
 ## Usage & configuration
 
@@ -40,7 +46,8 @@ exports.sequelize = {
   host: 'localhost',
   username: 'root',
   password: '',
-  database: 'test'
+  database: 'test',
+  dialect: 'mysql'|'mariadb'|'postgres'|'mssql'
 };
 ```
 

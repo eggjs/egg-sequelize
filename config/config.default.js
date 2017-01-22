@@ -2,4 +2,5 @@
 
 exports.sequelize = {
   modelPath: 'model',
+  dialect: 'mysql',
 };
