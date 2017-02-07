@@ -14,18 +14,18 @@
   ],
   "dependencies": {
     "loading": "^1.13.0",
-    "sequelize": "^3.27.0"
+    "sequelize": "^3.30.1"
   },
   "devDependencies": {
     "autod": "^2.7.1",
-    "egg": "^0.7.0",
-    "egg-bin": "^1.10.0",
+    "egg": "^0.10.0",
+    "egg-bin": "^2.0.2",
     "egg-ci": "^1.1.0",
-    "egg-mock": "^2.0.0",
-    "eslint": "^3.13.1",
+    "egg-mock": "^2.3.1",
+    "eslint": "^3.15.0",
     "eslint-config-egg": "^3.2.0",
     "mysql": "^2.12.0",
-    "supertest": "^2.0.1",
+    "supertest": "^3.0.0",
     "webstorm-disable-index": "^1.1.2"
   },
   "engines": {
