@@ -55,7 +55,7 @@ More documents please refer to [Sequelize.js](http://sequelize.readthedocs.io/en
 
 ## models
 
-Please set sequelize models under `app/models`
+Please set sequelize models under `app/model`
 
 ## Examples
 
