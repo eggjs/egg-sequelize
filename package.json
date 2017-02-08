@@ -40,7 +40,6 @@
     "autod": "autod"
   },
   "files": [
-    "index.js",
     "app.js",
     "agent.js",
     "config",
@@ -59,15 +58,5 @@
   },
   "homepage": "https://github.com/eggjs/egg-sequelize#readme",
   "author": "jtyjty99999",
-  "license": "MIT",
-  "boilerplate": {
-    "name": "egg-boilerplate-plugin",
-    "version": "1.7.0",
-    "description": "boilerplate for egg plugin",
-    "repository": {
-      "type": "git",
-      "url": "git@github.com:eggjs/egg-boilerplate-plugin.git"
-    },
-    "homepage": "https://github.com/eggjs/egg-boilerplate-plugin"
-  }
+  "license": "MIT"
 }

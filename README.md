@@ -81,7 +81,7 @@ module.exports = function (sequelize) {
 'use strict'
 
 module.exports = function* () {
-  this.body = yield this.models.test.find({
+  this.body = yield this.model.test.find({
     'name':'aaa'
   })
 }
