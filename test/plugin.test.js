@@ -1,6 +1,7 @@
 'use strict';
 
 const mm = require('egg-mock');
+require('should');
 
 describe('test/plugin.test.js', () => {
   let app;
@@ -15,8 +16,26 @@ describe('test/plugin.test.js', () => {
 
   after(mm.restore);
 
-  it('should load models into contxt', () => {
-    //
+  it('test config', function() {
+    const config = app.config.sequelize;
+    config.should.have.properties([
+      'modelPath',
+      'port',
+      'host',
+      'username',
+      'password',
+      'database',
+      'dialect',
+      'logging',
+    ]);
   });
+
+  it('sequelize init success', function() {
+    const sequelize = app.sequelize;
+    sequelize.should.be.ok;
+    sequelize.should.have.propertyByPath('models', 'test');
+  });
+
+
 });
 

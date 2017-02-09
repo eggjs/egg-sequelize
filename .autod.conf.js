@@ -1,17 +1,26 @@
-'ues strict';
+'use strict';
 
 module.exports = {
   write: true,
   prefix: '^',
-  devprefix: '^',
-  exclude: [
-    'test/fixtures',
+  test: [
+    'test',
+    'benchmark',
   ],
   devdep: [
+    'egg',
+    'egg-ci',
+    'egg-bin',
     'autod',
+    'eslint',
+    'eslint-config-egg',
+    'supertest',
+    'webstorm-disable-index',
   ],
-  keep: [
+  exclude: [
+    './test/fixtures',
+    './docs',
+    './coverage',
   ],
-  semver: [
-  ],
+  registry: 'https://r.cnpmjs.org',
 };
