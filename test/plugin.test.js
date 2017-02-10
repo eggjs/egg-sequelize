@@ -17,25 +17,18 @@ describe('test/plugin.test.js', () => {
 
   after(mm.restore);
 
-  it('test config', () => {
-    const config = app.config.sequelize;
-    assert.deepEqual(Object.keys(config), [
-      'dialect',
-      'database',
-      'username',
-      'password',
-      'host',
-      'port',
-      'logging',
-    ]);
-  });
-
-  it('sequelize init success', () => {
+  it('sequelize init success', function() {
     const sequelize = app.sequelize;
     assert(sequelize);
     assert(sequelize.models);
     assert.deepEqual(sequelize.models, app.model);
-    assert(sequelize.test);
+    assert(sequelize.models.user);
+  });
+
+  it('ctx model property getter', function() {
+    const ctx = app.mockContext();
+    assert.ok(ctx.model);
+    assert.ok(ctx.model.user);
   });
 
   it('should get data from create', function* () {
@@ -46,10 +39,8 @@ describe('test/plugin.test.js', () => {
     .send({
       name: 'popomore',
     });
-
     const res = yield request(app.callback())
-    .get('/users');
+      .get('/users');
     assert(res.body[0].name === 'popomore');
   });
-
 });

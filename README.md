@@ -59,6 +59,8 @@ Please set sequelize models under `app/model`
 
 ## Examples
 
+### Standard
+
 `app/model/test.js`
 
 ```js
@@ -84,5 +86,60 @@ module.exports = function* () {
   this.body = yield this.model.test.find({
     'name':'aaa'
   })
+}
+```
+
+### Associate 
+
+`app/model/user.js`
+
+```js
+
+'use strict'
+
+module.exports = function (sequelize) {
+  return sequelize.define('user', {
+    name: {
+      type: sequelize.Sequelize.STRING(30),
+    }
+  })
+}
+```
+
+`app/model/post.js`
+
+```js
+
+'use strict'
+
+module.exports = function (sequelize) {
+  return sequelize.define('post', {
+    name: {
+      type: sequelize.Sequelize.STRING(30),
+    },
+    userId: {
+      type: sequelize.Sequelize.INTEGER,
+      field: 'user_id'
+    }
+  }, {
+    classMethods: {
+      associate(models) {
+        models.post.belongsTo(models.user);
+      }
+    }
+  })
+}
+```
+
+`app/controller/post.js`
+
+```js
+
+'use strict'
+
+module.exports = function* () {
+  this.body = yield this.model.post.find({
+    'name':'aaa'
+  });
 }
 ```
