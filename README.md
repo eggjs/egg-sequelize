@@ -28,7 +28,7 @@ Egg's sequelize plugin.
 
 ```bash
 $ npm i --save egg-sequelize
- 
+
 # And one of the following:
 $ npm install --save pg pg-hstore
 $ npm install --save mysql # For both mysql and mariadb dialects
@@ -42,7 +42,7 @@ $ npm install --save tedious # MSSQL
 
 ```js
 exports.sequelize = {
-  port: '3306', 
+  port: '3306',
   host: 'localhost',
   username: 'root',
   password: '',

@@ -1,6 +1,10 @@
 'use strict';
 
 exports.sequelize = {
-  modelPath: 'model',
   dialect: 'mysql',
+  database: '',
+  username: '',
+  password: '',
+  host: '',
+  port: '',
 };
