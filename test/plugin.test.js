@@ -1,41 +1,55 @@
 'use strict';
 
+const assert = require('assert');
 const mm = require('egg-mock');
-require('should');
+const request = require('supertest');
 
 describe('test/plugin.test.js', () => {
   let app;
 
-  before(done => {
+  before(() => {
     app = mm.app({
       baseDir: 'apps/model-app',
-      plugin: 'sequelize',
     });
-    app.ready(done);
+    return app.ready();
   });
+  before(() => app.sequelize.sync({ force: true }));
 
   after(mm.restore);
 
-  it('test config', function() {
+  it('test config', () => {
     const config = app.config.sequelize;
-    config.should.have.properties([
-      'modelPath',
-      'port',
-      'host',
+    assert.deepEqual(Object.keys(config), [
+      'dialect',
+      'database',
       'username',
       'password',
-      'database',
-      'dialect',
+      'host',
+      'port',
       'logging',
     ]);
   });
 
-  it('sequelize init success', function() {
+  it('sequelize init success', () => {
     const sequelize = app.sequelize;
-    sequelize.should.be.ok;
-    sequelize.should.have.propertyByPath('models', 'test');
+    assert(sequelize);
+    assert(sequelize.models);
+    assert.deepEqual(sequelize.models, app.model);
+    assert(sequelize.test);
   });
 
+  it('should get data from create', function* () {
+    app.mockCsrf();
+
+    yield request(app.callback())
+    .post('/users')
+    .send({
+      name: 'popomore',
+    });
+
+    const res = yield request(app.callback())
+    .get('/users');
+    assert(res.body[0].name === 'popomore');
+  });
 
 });
-

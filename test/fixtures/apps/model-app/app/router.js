@@ -1,7 +1,5 @@
 'use strict';
 
 module.exports = function(app) {
-  app.get('/models', function*() {
-      //
-  });
+  app.resources('users', '/users', 'user');
 };
