@@ -6,3 +6,4 @@ coverage/
 run
 .DS_Store
 *.swp
+test/fixtures/apps/model-app/run/
