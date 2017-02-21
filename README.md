@@ -107,7 +107,7 @@ module.exports = function* () {
 'use strict'
 
 module.exports = model => {
-  return sequelize.define('post', {
+  return model.define('post', {
     name: model.Sequelize.STRING(30),
     user_id: model.Sequelize.INTEGER,
     created_at: model.Sequelize.DATE,
