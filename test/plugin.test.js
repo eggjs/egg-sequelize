@@ -29,6 +29,12 @@ describe('test/plugin.test.js', () => {
     const ctx = app.mockContext();
     assert.ok(ctx.model);
     assert.ok(ctx.model.user);
+    assert.ok(ctx.model.monkey);
+  });
+
+  it('pluralize tableName', function() {
+    assert(app.model.user.tableName === 'users');
+    assert(app.model.monkey.tableName === 'monkeys');
   });
 
   it('should get data from create', function* () {

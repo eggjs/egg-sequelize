@@ -42,12 +42,12 @@ $ npm install --save tedious # MSSQL
 
 ```js
 exports.sequelize = {
-  port: '3306',
+  dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
+  database: 'test',
   host: 'localhost',
+  port: '3306',
   username: 'root',
   password: '',
-  database: 'test',
-  dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
 };
 ```
 
@@ -61,19 +61,29 @@ Please set sequelize models under `app/model`
 
 ### Standard
 
-`app/model/test.js`
+`app/model/user.js`
 
 ```js
 
 'use strict'
 
-module.exports = function (sequelize) {
-  return sequelize.define('test', {
-    name: {
-      type: sequelize.Sequelize.STRING(30),
-    }
-  })
-}
+module.exports = model => {
+  return model.define('user', {
+    login: model.Sequelize.STRING,
+    name: model.Sequelize.STRING(30),
+    password: model.Sequelize.STRING(32),
+    age: model.Sequelize.INTEGER,
+    created_at: model.Sequelize.DATE,
+    updated_at: model.Sequelize.DATE,
+  }, {
+    classMethods: {
+      * findByLogin(login) {
+        yield this.findOne({ login: login });
+      },
+    },
+  });
+};
+
 ```
 
 `app/controller/user.js`
@@ -83,28 +93,12 @@ module.exports = function (sequelize) {
 'use strict'
 
 module.exports = function* () {
-  this.body = yield this.model.test.find({
-    'name':'aaa'
-  })
-}
+  this.body = yield this.model.user.findByLogin('foo');
+};
 ```
 
-### Associate 
+### Associate
 
-`app/model/user.js`
-
-```js
-
-'use strict'
-
-module.exports = function (sequelize) {
-  return sequelize.define('user', {
-    name: {
-      type: sequelize.Sequelize.STRING(30),
-    }
-  })
-}
-```
 
 `app/model/post.js`
 
@@ -112,23 +106,20 @@ module.exports = function (sequelize) {
 
 'use strict'
 
-module.exports = function (sequelize) {
+module.exports = model => {
   return sequelize.define('post', {
-    name: {
-      type: sequelize.Sequelize.STRING(30),
-    },
-    userId: {
-      type: sequelize.Sequelize.INTEGER,
-      field: 'user_id'
-    }
+    name: model.Sequelize.STRING(30),
+    user_id: model.Sequelize.INTEGER,
+    created_at: model.Sequelize.DATE,
+    updated_at: model.Sequelize.DATE,
   }, {
     classMethods: {
-      associate(models) {
-        models.post.belongsTo(models.user);
+      associate(model) {
+        model.post.belongsTo(model.user);
       }
     }
-  })
-}
+  });
+};
 ```
 
 `app/controller/post.js`

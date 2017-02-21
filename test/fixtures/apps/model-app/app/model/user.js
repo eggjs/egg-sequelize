@@ -2,11 +2,10 @@
 
 const assert = require('assert');
 
-module.exports = sequelize => {
-  return sequelize.define('user', {
-    name: {
-      type: sequelize.Sequelize.STRING(30),
-    },
+module.exports = model => {
+  return model.define('user', {
+    name: model.Sequelize.STRING(30),
+    age: model.Sequelize.INTEGER,
   }, {
     classMethods: {
       associate(models) {

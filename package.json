@@ -13,7 +13,8 @@
     "orm"
   ],
   "dependencies": {
-    "sequelize": "^3.30.1"
+    "sequelize": "^3.30.1",
+    "inflected": "^1.1.7"
   },
   "devDependencies": {
     "autod": "^2.7.1",
