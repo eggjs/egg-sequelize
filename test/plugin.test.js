@@ -13,14 +13,13 @@ describe('test/plugin.test.js', () => {
     });
     return app.ready();
   });
-  before(() => app.sequelize.sync({ force: true }));
+  before(() => app.model.sync({ force: true }));
 
   after(mm.restore);
 
   describe('Base', () => {
     it('sequelize init success', () => {
-      const sequelize = app.sequelize;
-      assert(sequelize);
+      assert(app.model);
     });
 
     it('ctx model property getter', () => {
@@ -35,6 +34,12 @@ describe('test/plugin.test.js', () => {
       assert(app.model.Person.tableName === 'person');
       assert(app.model.User.tableName === 'user');
       assert(app.model.Monkey.tableName === 'monkey');
+    });
+  });
+
+  describe('Test model', () => {
+    it('User.test method work', function* () {
+      yield app.model.User.test();
     });
   });
 

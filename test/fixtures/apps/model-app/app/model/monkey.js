@@ -1,8 +1,8 @@
 'use strict';
 
-module.exports = model => {
-  const { Sequelize: { STRING, INTEGER, DATE } } = model;
-  return model.define('monkey', {
+module.exports = app => {
+  const { STRING, INTEGER, DATE } = app.Sequelize;
+  return app.model.define('monkey', {
     name: {
       type: STRING,
       allowNull: false,
@@ -13,7 +13,7 @@ module.exports = model => {
   }, {
     classMethods: {
       * findUser() {
-        return yield model.User.find({ id: 1 });
+        return yield app.model.User.find({ id: 1 });
       },
     },
   });

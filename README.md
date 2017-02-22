@@ -79,9 +79,9 @@ Please put models under `app/model` dir.
 
 'use strict'
 
-module.exports = model => {
-  const { Sequelize: { STRING, INTEGER, DATE } } = model;
-  return model.define('user', {
+module.exports = app => {
+  const { STRING, INTEGER, DATE } = app.Sequelize;
+  return app.model.define('user', {
     login: STRING,
     name: STRING(30),
     password: STRING(32),
@@ -119,8 +119,8 @@ module.exports = function* () {
 
 'use strict'
 
-module.exports = model => {
-  const { Sequelize: { STRING, INTEGER, DATE } } = model;
+module.exports = app => {
+  const { STRING, INTEGER, DATE } = app.Sequelize;
   return model.define('Post', {
     name: STRING(30),
     user_id: INTEGER,
