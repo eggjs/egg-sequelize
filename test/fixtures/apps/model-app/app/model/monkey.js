@@ -1,18 +1,19 @@
 'use strict';
 
 module.exports = model => {
+  const { Sequelize: { STRING, INTEGER, DATE } } = model;
   return model.define('monkey', {
     name: {
-      type: model.Sequelize.STRING,
+      type: STRING,
       allowNull: false,
     },
-    user_id: model.Sequelize.INTEGER,
-    created_at: model.Sequelize.DATE,
-    updated_at: model.Sequelize.DATE,
+    user_id: INTEGER,
+    created_at: DATE,
+    updated_at: DATE,
   }, {
     classMethods: {
       * findUser() {
-        return yield model.user.find({ id: 1 });
+        return yield model.User.find({ id: 1 });
       },
     },
   });

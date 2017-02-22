@@ -17,31 +17,42 @@ describe('test/plugin.test.js', () => {
 
   after(mm.restore);
 
-  it('sequelize init success', function() {
-    const sequelize = app.sequelize;
-    assert(sequelize);
-    assert(sequelize.models);
-    assert.deepEqual(sequelize.models, app.model);
-    assert(sequelize.models.user);
-  });
-
-  it('ctx model property getter', function() {
-    const ctx = app.mockContext();
-    assert.ok(ctx.model);
-    assert.ok(ctx.model.user);
-    assert.ok(ctx.model.monkey);
-  });
-
-  it('should get data from create', function* () {
-    app.mockCsrf();
-
-    yield request(app.callback())
-    .post('/users')
-    .send({
-      name: 'popomore',
+  describe('Base', () => {
+    it('sequelize init success', () => {
+      const sequelize = app.sequelize;
+      assert(sequelize);
     });
-    const res = yield request(app.callback())
-      .get('/users');
-    assert(res.body[0].name === 'popomore');
+
+    it('ctx model property getter', () => {
+      const ctx = app.mockContext();
+      assert.ok(ctx.model);
+      assert.ok(ctx.model.User);
+      assert.ok(ctx.model.Monkey);
+      assert.ok(ctx.model.Person);
+    });
+
+    it('has right tableName', () => {
+      assert(app.model.Person.tableName === 'person');
+      assert(app.model.User.tableName === 'user');
+      assert(app.model.Monkey.tableName === 'monkey');
+    });
+  });
+
+  describe('Test controller', () => {
+    it('should get data from create', function* () {
+      app.mockCsrf();
+
+      yield request(app.callback())
+      .post('/users')
+      .send({
+        name: 'popomore',
+      });
+      const user = yield app.model.User.findOne({ name: 'popomore' });
+      assert.ok(user);
+      assert(user.isNewRecord === false);
+      const res = yield request(app.callback())
+        .get('/users');
+      assert(res.body[0].name === 'popomore');
+    });
   });
 });

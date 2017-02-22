@@ -53,9 +53,21 @@ exports.sequelize = {
 
 More documents please refer to [Sequelize.js](http://sequelize.readthedocs.io/en/v3/)
 
-## models
+## Model files
 
-Please set sequelize models under `app/model`
+Please put models under `app/model` dir.
+
+## Conventions
+
+| model file | class name | table name |
+| ---------- | ---------- | ---------- |
+| user.js | app.model.User | user |
+| user.js | app.model.User | user |
+| person.js | app.model.Person | person |
+| user_group.js | app.model.UserGroup | user_group |
+
+- Tables always has timestramp fields: `created_at datetime`, `updated_at datetime`.
+- Use underscore style column name, for example: `user_id`, `comments_count`.
 
 ## Examples
 
@@ -68,13 +80,14 @@ Please set sequelize models under `app/model`
 'use strict'
 
 module.exports = model => {
+  const { Sequelize: { STRING, INTEGER, DATE } } = model;
   return model.define('user', {
-    login: model.Sequelize.STRING,
-    name: model.Sequelize.STRING(30),
-    password: model.Sequelize.STRING(32),
-    age: model.Sequelize.INTEGER,
-    created_at: model.Sequelize.DATE,
-    updated_at: model.Sequelize.DATE,
+    login: STRING,
+    name: STRING(30),
+    password: STRING(32),
+    age: INTEGER,
+    created_at: DATE,
+    updated_at: DATE,
   }, {
     classMethods: {
       * findByLogin(login) {
@@ -93,7 +106,7 @@ module.exports = model => {
 'use strict'
 
 module.exports = function* () {
-  this.body = yield this.model.user.findByLogin('foo');
+  this.body = yield this.model.User.findByLogin('foo');
 };
 ```
 
@@ -107,15 +120,16 @@ module.exports = function* () {
 'use strict'
 
 module.exports = model => {
-  return model.define('post', {
-    name: model.Sequelize.STRING(30),
-    user_id: model.Sequelize.INTEGER,
-    created_at: model.Sequelize.DATE,
-    updated_at: model.Sequelize.DATE,
+  const { Sequelize: { STRING, INTEGER, DATE } } = model;
+  return model.define('Post', {
+    name: STRING(30),
+    user_id: INTEGER,
+    created_at: DATE,
+    updated_at: DATE,
   }, {
     classMethods: {
-      associate(model) {
-        model.post.belongsTo(model.user);
+      associate() {
+        model.Post.belongsTo(model.user);
       }
     }
   });
@@ -129,7 +143,7 @@ module.exports = model => {
 'use strict'
 
 module.exports = function* () {
-  this.body = yield this.model.post.find({
+  this.body = yield this.model.Post.find({
     'name':'aaa'
   });
 }
