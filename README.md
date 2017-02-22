@@ -59,28 +59,27 @@ Please put models under `app/model` dir.
 
 ## Conventions
 
-| model file | class name | table name |
-| ---------- | ---------- | ---------- |
-| user.js | app.model.User | user |
-| user.js | app.model.User | user |
-| person.js | app.model.Person | person |
-| user_group.js | app.model.UserGroup | user_group |
+| model file      | class name            | table name   |
+| --------------- | --------------------- | ------------ |
+| `user.js`       | `app.model.User`      | `user`       |
+| `person.js`     | `app.model.Person`    | `person`     |
+| `user_group.js` | `app.model.UserGroup` | `user_group` |
 
-- Tables always has timestramp fields: `created_at datetime`, `updated_at datetime`.
+- Tables always has timestamp fields: `created_at datetime`, `updated_at datetime`.
 - Use underscore style column name, for example: `user_id`, `comments_count`.
 
 ## Examples
 
 ### Standard
 
-`app/model/user.js`
+Define a model first.
 
 ```js
-
-'use strict'
+// app/model/user.js
 
 module.exports = app => {
   const { STRING, INTEGER, DATE } = app.Sequelize;
+
   return app.model.define('user', {
     login: STRING,
     name: STRING(30),
@@ -99,29 +98,31 @@ module.exports = app => {
 
 ```
 
-`app/controller/user.js`
+Now you can use it in your controller:
 
 ```js
-
-'use strict'
-
-module.exports = function* () {
-  this.body = yield this.model.User.findByLogin('foo');
-};
+// app/controller/user.js
+module.exports = app => {
+  return class UserController extends app.Controller {
+    * index() {
+      const users = yield this.ctx.model.User.findAll();
+      this.ctx.body = users;
+    }
+  }
+}
 ```
 
-### Associate
+### Full example
 
 
-`app/model/post.js`
 
 ```js
-
-'use strict'
+// app/model/post.js
 
 module.exports = app => {
   const { STRING, INTEGER, DATE } = app.Sequelize;
-  return model.define('Post', {
+
+  return app.model.define('Post', {
     name: STRING(30),
     user_id: INTEGER,
     created_at: DATE,
@@ -129,22 +130,40 @@ module.exports = app => {
   }, {
     classMethods: {
       associate() {
-        model.Post.belongsTo(model.user);
+        app.model.Post.belongsTo(app.model.User, { as: 'user' });
       }
     }
   });
 };
 ```
 
-`app/controller/post.js`
 
 ```js
+// app/controller/post.js
+module.exports = app => {
+  return class PostController extends app.Controller {
+    * index() {
+      const posts = yield this.ctx.model.Post.findAll({
+        attributes: [ 'id', 'user_id' ],
+        include: { model: this.ctx.model.User, as: 'user' },
+        where: { status: 'publish' },
+        order: 'id desc',
+      });
 
-'use strict'
+      this.ctx.body = posts;
+    }
 
-module.exports = function* () {
-  this.body = yield this.model.Post.find({
-    'name':'aaa'
-  });
+    * show() {
+      const post = yield this.ctx.model.Post.findById(this.params.id);
+      const post.user = yield post.getUser();
+      this.ctx.body = post;
+    }
+
+    * destroy() {
+      const post = yield this.ctx.model.Post.findById(this.params.id);
+      yield post.destroy();
+      this.ctx.body = { success: true };
+    }
+  }
 }
 ```
