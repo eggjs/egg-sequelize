@@ -59,11 +59,11 @@ Please put models under `app/model` dir.
 
 ## Conventions
 
-| model file      | class name            | table name   |
-| --------------- | --------------------- | ------------ |
-| `user.js`       | `app.model.User`      | `user`       |
-| `person.js`     | `app.model.Person`    | `person`     |
-| `user_group.js` | `app.model.UserGroup` | `user_group` |
+| model file      | class name            |
+| --------------- | --------------------- |
+| `user.js`       | `app.model.User`      |
+| `person.js`     | `app.model.Person`    |
+| `user_group.js` | `app.model.UserGroup` |
 
 - Tables always has timestamp fields: `created_at datetime`, `updated_at datetime`.
 - Use underscore style column name, for example: `user_id`, `comments_count`.

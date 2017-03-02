@@ -31,9 +31,9 @@ describe('test/plugin.test.js', () => {
     });
 
     it('has right tableName', () => {
-      assert(app.model.Person.tableName === 'person');
-      assert(app.model.User.tableName === 'user');
-      assert(app.model.Monkey.tableName === 'monkey');
+      assert(app.model.Person.tableName === 'people');
+      assert(app.model.User.tableName === 'users');
+      assert(app.model.Monkey.tableName === 'monkeys');
     });
   });
 
