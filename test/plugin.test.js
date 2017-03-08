@@ -33,13 +33,21 @@ describe('test/plugin.test.js', () => {
     it('has right tableName', () => {
       assert(app.model.Person.tableName === 'people');
       assert(app.model.User.tableName === 'users');
-      assert(app.model.Monkey.tableName === 'monkeys');
+      assert(app.model.Monkey.tableName === 'the_monkeys');
     });
   });
 
   describe('Test model', () => {
     it('User.test method work', function* () {
       yield app.model.User.test();
+    });
+
+    it('should work timestramp', function* () {
+      const user = yield app.model.User.create({ name: 'huacnlee' });
+      assert(user.isNewRecord === false);
+      assert(user.name === 'huacnlee');
+      assert(user.created_at !== null);
+      assert(user.updated_at !== null);
     });
   });
 
@@ -52,12 +60,16 @@ describe('test/plugin.test.js', () => {
       .send({
         name: 'popomore',
       });
-      const user = yield app.model.User.findOne({ name: 'popomore' });
+      const user = yield app.model.User.findOne({
+        where: { name: 'popomore' },
+      });
       assert.ok(user);
+      assert(user.name === 'popomore');
       assert(user.isNewRecord === false);
       const res = yield request(app.callback())
-        .get('/users');
-      assert(res.body[0].name === 'popomore');
+        .get(`/users/${user.id}`);
+      assert(res.status === 200);
+      assert(res.body.name === 'popomore');
     });
   });
 });

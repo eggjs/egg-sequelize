@@ -11,6 +11,7 @@ module.exports = app => {
     created_at: DATE,
     updated_at: DATE,
   }, {
+    tableName: 'the_monkeys',
     classMethods: {
       * findUser() {
         return yield app.model.User.find({ id: 1 });
