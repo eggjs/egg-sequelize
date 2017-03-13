@@ -13,34 +13,63 @@ describe('test/plugin.test.js', () => {
     });
     return app.ready();
   });
-  before(() => app.sequelize.sync({ force: true }));
+  before(() => app.model.sync({ force: true }));
 
   after(mm.restore);
 
-  it('sequelize init success', function() {
-    const sequelize = app.sequelize;
-    assert(sequelize);
-    assert(sequelize.models);
-    assert.deepEqual(sequelize.models, app.model);
-    assert(sequelize.models.user);
-  });
-
-  it('ctx model property getter', function() {
-    const ctx = app.mockContext();
-    assert.ok(ctx.model);
-    assert.ok(ctx.model.user);
-  });
-
-  it('should get data from create', function* () {
-    app.mockCsrf();
-
-    yield request(app.callback())
-    .post('/users')
-    .send({
-      name: 'popomore',
+  describe('Base', () => {
+    it('sequelize init success', () => {
+      assert(app.model);
     });
-    const res = yield request(app.callback())
-      .get('/users');
-    assert(res.body[0].name === 'popomore');
+
+    it('ctx model property getter', () => {
+      const ctx = app.mockContext();
+      assert.ok(ctx.model);
+      assert.ok(ctx.model.User);
+      assert.ok(ctx.model.Monkey);
+      assert.ok(ctx.model.Person);
+    });
+
+    it('has right tableName', () => {
+      assert(app.model.Person.tableName === 'people');
+      assert(app.model.User.tableName === 'users');
+      assert(app.model.Monkey.tableName === 'the_monkeys');
+    });
+  });
+
+  describe('Test model', () => {
+    it('User.test method work', function* () {
+      yield app.model.User.test();
+    });
+
+    it('should work timestramp', function* () {
+      const user = yield app.model.User.create({ name: 'huacnlee' });
+      assert(user.isNewRecord === false);
+      assert(user.name === 'huacnlee');
+      assert(user.created_at !== null);
+      assert(user.updated_at !== null);
+    });
+  });
+
+  describe('Test controller', () => {
+    it('should get data from create', function* () {
+      app.mockCsrf();
+
+      yield request(app.callback())
+      .post('/users')
+      .send({
+        name: 'popomore',
+      });
+      const user = yield app.model.User.findOne({
+        where: { name: 'popomore' },
+      });
+      assert.ok(user);
+      assert(user.name === 'popomore');
+      assert(user.isNewRecord === false);
+      const res = yield request(app.callback())
+        .get(`/users/${user.id}`);
+      assert(res.status === 200);
+      assert(res.body.name === 'popomore');
+    });
   });
 });

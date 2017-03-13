@@ -42,104 +42,128 @@ $ npm install --save tedious # MSSQL
 
 ```js
 exports.sequelize = {
-  port: '3306',
+  dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
+  database: 'test',
   host: 'localhost',
+  port: '3306',
   username: 'root',
   password: '',
-  database: 'test',
-  dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
 };
 ```
 
 More documents please refer to [Sequelize.js](http://sequelize.readthedocs.io/en/v3/)
 
-## models
+## Model files
 
-Please set sequelize models under `app/model`
+Please put models under `app/model` dir.
+
+## Conventions
+
+| model file      | class name            |
+| --------------- | --------------------- |
+| `user.js`       | `app.model.User`      |
+| `person.js`     | `app.model.Person`    |
+| `user_group.js` | `app.model.UserGroup` |
+
+- Tables always has timestamp fields: `created_at datetime`, `updated_at datetime`.
+- Use underscore style column name, for example: `user_id`, `comments_count`.
 
 ## Examples
 
 ### Standard
 
-`app/model/test.js`
+Define a model first.
 
 ```js
+// app/model/user.js
 
-'use strict'
+module.exports = app => {
+  const { STRING, INTEGER, DATE } = app.Sequelize;
 
-module.exports = function (sequelize) {
-  return sequelize.define('test', {
-    name: {
-      type: sequelize.Sequelize.STRING(30),
-    }
-  })
-}
-```
-
-`app/controller/user.js`
-
-```js
-
-'use strict'
-
-module.exports = function* () {
-  this.body = yield this.model.test.find({
-    'name':'aaa'
-  })
-}
-```
-
-### Associate 
-
-`app/model/user.js`
-
-```js
-
-'use strict'
-
-module.exports = function (sequelize) {
-  return sequelize.define('user', {
-    name: {
-      type: sequelize.Sequelize.STRING(30),
-    }
-  })
-}
-```
-
-`app/model/post.js`
-
-```js
-
-'use strict'
-
-module.exports = function (sequelize) {
-  return sequelize.define('post', {
-    name: {
-      type: sequelize.Sequelize.STRING(30),
-    },
-    userId: {
-      type: sequelize.Sequelize.INTEGER,
-      field: 'user_id'
-    }
+  return app.model.define('user', {
+    login: STRING,
+    name: STRING(30),
+    password: STRING(32),
+    age: INTEGER,
+    created_at: DATE,
+    updated_at: DATE,
   }, {
     classMethods: {
-      associate(models) {
-        models.post.belongsTo(models.user);
-      }
+      * findByLogin(login) {
+        yield this.findOne({ login: login });
+      },
+    },
+  });
+};
+
+```
+
+Now you can use it in your controller:
+
+```js
+// app/controller/user.js
+module.exports = app => {
+  return class UserController extends app.Controller {
+    * index() {
+      const users = yield this.ctx.model.User.findAll();
+      this.ctx.body = users;
     }
-  })
+  }
 }
 ```
 
-`app/controller/post.js`
+### Full example
+
+
 
 ```js
+// app/model/post.js
 
-'use strict'
+module.exports = app => {
+  const { STRING, INTEGER, DATE } = app.Sequelize;
 
-module.exports = function* () {
-  this.body = yield this.model.post.find({
-    'name':'aaa'
+  return app.model.define('Post', {
+    name: STRING(30),
+    user_id: INTEGER,
+    created_at: DATE,
+    updated_at: DATE,
+  }, {
+    classMethods: {
+      associate() {
+        app.model.Post.belongsTo(app.model.User, { as: 'user' });
+      }
+    }
   });
+};
+```
+
+
+```js
+// app/controller/post.js
+module.exports = app => {
+  return class PostController extends app.Controller {
+    * index() {
+      const posts = yield this.ctx.model.Post.findAll({
+        attributes: [ 'id', 'user_id' ],
+        include: { model: this.ctx.model.User, as: 'user' },
+        where: { status: 'publish' },
+        order: 'id desc',
+      });
+
+      this.ctx.body = posts;
+    }
+
+    * show() {
+      const post = yield this.ctx.model.Post.findById(this.params.id);
+      const post.user = yield post.getUser();
+      this.ctx.body = post;
+    }
+
+    * destroy() {
+      const post = yield this.ctx.model.Post.findById(this.params.id);
+      yield post.destroy();
+      this.ctx.body = { success: true };
+    }
+  }
 }
 ```
