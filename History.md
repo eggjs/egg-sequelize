@@ -1,4 +1,9 @@
 
+2.0.0 / 2017-03-13
+==================
+
+  * feat: [BREAKING_CHANGE] Update default Sequelize configs (#4)
+
 1.0.0 / 2017-02-19
 ==================
 
