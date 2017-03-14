@@ -37,6 +37,31 @@ describe('test/plugin.test.js', () => {
     });
   });
 
+  describe('Database options', () => {
+    let config;
+
+    before(() => {
+      config = app.model.options;
+    });
+
+    it('should work with default config', function* () {
+      assert(config.define.freezeTableName === false);
+      assert(config.port === '3306');
+      assert(config.username === 'root');
+      assert(config.password === '');
+      assert(config.logging !== false);
+      assert(config.benchmark === true);
+    });
+
+    it('should work with fixture configs', function* () {
+      assert(config.dialect === 'mysql');
+      assert(config.host === '127.0.0.1');
+      assert(config.pool.idle === 10000);
+      assert(config.timezone === '+08:01');
+      assert(config.storage === 'db/test-foo.sqlite');
+    });
+  });
+
   describe('Test model', () => {
     it('User.test method work', function* () {
       yield app.model.User.test();
