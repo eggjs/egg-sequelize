@@ -1,4 +1,9 @@
 
+2.0.1 / 2017-03-14
+==================
+
+  * fix: Allow all of Sequelize options in `config.sequelize` (#5)
+
 2.0.0 / 2017-03-13
 ==================
 
