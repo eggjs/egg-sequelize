@@ -46,8 +46,7 @@ describe('test/plugin.test.js', () => {
 
     it('should work with default config', function* () {
       assert(config.define.freezeTableName === false);
-      assert(config.host === 'localhost');
-      assert(config.port === 3306);
+      assert(config.port === '3306');
       assert(config.username === 'root');
       assert(config.password === '');
       assert(config.logging !== false);
@@ -56,7 +55,7 @@ describe('test/plugin.test.js', () => {
 
     it('should work with fixture configs', function* () {
       assert(config.dialect === 'mysql');
-      assert(config.host === 'localhost');
+      assert(config.host === '127.0.0.1');
       assert(config.pool.idle === 10000);
       assert(config.timezone === '+08:01');
       assert(config.storage === 'db/test-foo.sqlite');
