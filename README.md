@@ -50,6 +50,14 @@ exports.sequelize = {
   password: '',
 };
 ```
+- `config/plugin.js`
+
+``` js
+exports.sequelize = {
+  enable: true,
+  package: 'egg-sequelize'
+}
+```
 
 More documents please refer to [Sequelize.js](http://sequelize.readthedocs.io/en/v3/)
 
