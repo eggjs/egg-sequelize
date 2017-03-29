@@ -98,7 +98,7 @@ module.exports = app => {
   }, {
     classMethods: {
       * findByLogin(login) {
-        yield this.findOne({ login: login });
+        return yield this.findOne({ login: login });
       },
     },
   });
