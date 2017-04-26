@@ -48,6 +48,8 @@ exports.sequelize = {
   port: '3306',
   username: 'root',
   password: '',
+  modelDir: 'app/model', // specify model dir path
+  modelAccessName: 'model' // custom model access path, default `app.model`
 };
 ```
 - `config/plugin.js`
