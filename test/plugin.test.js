@@ -30,6 +30,13 @@ describe('test/plugin.test.js', () => {
       assert.ok(ctx.model.Person);
     });
 
+    it('model not load non Sequelize files', function* () {
+      assert(!('Other' in app.model));
+
+      const ctx = app.mockContext();
+      assert(!('Other' in ctx.model));
+    });
+
     it('has right tableName', () => {
       assert(app.model.Person.tableName === 'people');
       assert(app.model.User.tableName === 'users');
