@@ -3,11 +3,12 @@ const path = require('path');
 const fs = require('fs');
 
 function requireConfig(name) {
-  const filePath = path.resolve(`./config/config.${name}.js`);
-  if (fs.existsSync(filePath)) {
-    return require(filePath).model || {};
-  }
-  return {};
+  const configPath = path.resolve(`./config/config.${name}.js`);
+  if (!fs.existsSync(configPath)) { return {}; }
+
+  let config = require(configPath).sequelize;
+  if ((typeof config) === 'function') { config = config(); }
+  return config || {};
 }
 
 const defaultConfig = requireConfig('default');

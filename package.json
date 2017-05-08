@@ -47,6 +47,8 @@
   "files": [
     "app.js",
     "agent.js",
+    "database.js",
+    ".sequelizerc",
     "config",
     "app",
     "lib"
