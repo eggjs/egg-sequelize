@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+EGG_SEQUELIZE_ROOT=./node_modules/egg-sequelize
+$EGG_SEQUELIZE_ROOT/node_modules/sequelize-cli/bin/sequelize --optionsPath $EGG_SEQUELIZE_ROOT/.sequelizerc $@

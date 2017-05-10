@@ -39,7 +39,6 @@ $ npm install --save tedious # MSSQL
 ## Usage & configuration
 
 - `config.default.js`
-
 ```js
 exports.sequelize = {
   dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
@@ -51,13 +50,23 @@ exports.sequelize = {
 };
 ```
 - `config/plugin.js`
-
 ``` js
 exports.sequelize = {
   enable: true,
   package: 'egg-sequelize'
 }
 ```
+- `package.json`
+```json
+{
+  "scripts": {
+    "migrate:new": "egg-sequelize migration:create",
+    "migrate:up": "egg-sequelize db:migrate",
+    "migrate:down": "egg-sequelize db:migrate:undo"
+  }
+}
+```
+
 
 More documents please refer to [Sequelize.js](http://sequelize.readthedocs.io/en/v3/)
 
@@ -175,6 +184,36 @@ module.exports = app => {
   }
 }
 ```
+
+## Migrations
+
+If you have added scripts of egg-sequelize into your `package.json`, now you can:
+
+| Command | Description |
+|-----|------|
+| npm run migrate:new | Generate a new Migration file to ./migrations/ |
+| npm run migrate:up | Run Migration |
+| npm run migrate:down | Rollback once Migration |
+
+For example:
+
+```bash
+$ npm run migrate:up
+```
+
+For `test` environment:
+
+```bash
+$ NODE_ENV=test npm run migrate:up
+```
+
+or for `production` environment:
+
+```bash
+$ NODE_ENV=production npm run migrate:up
+```
+
+And you may need to read [Sequelize - Migrations](http://docs.sequelizejs.com/en/v3/docs/migrations/) to learn about how to write Migrations.
 
 ## Questions & Suggestions
 
