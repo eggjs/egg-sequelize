@@ -50,8 +50,6 @@
     "agent.js",
     "lib",
     "app.js",
-    "database.js",
-    ".sequelizerc",
     "bin"
   ],
   "ci": {
