@@ -1,3 +1,7 @@
+2.1.1 / 2017-05-10
+==================
+
+  * feat: add `egg-sequelize` bin for Sequelize migrations support. (#11)
 
 2.0.2 / 2017-04-27
 ==================
