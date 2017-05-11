@@ -45,13 +45,12 @@
     "egg-sequelize": "bin/egg-sequelize"
   },
   "files": [
-    "app.js",
-    "agent.js",
-    "database.js",
-    ".sequelizerc",
-    "config",
     "app",
-    "lib"
+    "config",
+    "agent.js",
+    "lib",
+    "app.js",
+    "bin"
   ],
   "ci": {
     "version": "6, 7"

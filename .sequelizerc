@@ -1,6 +1,0 @@
-var path = require('path')
-
-module.exports = {
-  'config':          path.resolve('./node_modules/egg-sequelize/database.js'),
-  'migrations-path': path.resolve('migrations'),
-};
