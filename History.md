@@ -1,3 +1,8 @@
+2.1.3 / 2017-05-11
+==================
+
+  * fix: Migration load config.seuqelize for function type config support.
+
 2.1.2 / 2017-05-11
 ==================
 
