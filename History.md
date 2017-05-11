@@ -1,3 +1,8 @@
+2.1.2 / 2017-05-11
+==================
+
+  * fix: egg-sequelize bin to find correct sequelize-cli path in node_modules.
+
 2.1.1 / 2017-05-10
 ==================
 
