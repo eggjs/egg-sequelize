@@ -172,7 +172,8 @@ module.exports = app => {
 
     * show() {
       const post = yield this.ctx.model.Post.findById(this.params.id);
-      const post.user = yield post.getUser();
+      const user = yield post.getUser();
+      post.setDataValue('user', user);
       this.ctx.body = post;
     }
 
