@@ -186,6 +186,19 @@ module.exports = app => {
 }
 ```
 
+## Sync model to db
+
+Mention, If you want to sync models you defined to db(mysql or etc.), you should put sync operation in `app.js`.
+
+```js
+// {app_root}/app.js
+  module.exports = app => {
+    app.beforeStart(function* () {
+      yield app.model.sync({force: true});
+    });
+  };
+```
+
 ## Migrations
 
 If you have added scripts of egg-sequelize into your `package.json`, now you can:
@@ -215,6 +228,10 @@ $ NODE_ENV=production npm run migrate:up
 ```
 
 And you may need to read [Sequelize - Migrations](http://docs.sequelizejs.com/en/v3/docs/migrations/) to learn about how to write Migrations.
+
+## Recommended example
+
+- https://github.com/eggjs/examples/tree/master/sequelize-example/
 
 ## Questions & Suggestions
 
