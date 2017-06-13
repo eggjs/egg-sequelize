@@ -15,6 +15,9 @@ module.exports = app => {
 
     classMethods: {
     },
+
+    instanceMethods: {
+    },
   });
 
   Monkey.findUser = function* () {
