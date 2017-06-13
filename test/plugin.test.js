@@ -89,10 +89,10 @@ describe('test/plugin.test.js', () => {
       app.mockCsrf();
 
       yield request(app.callback())
-      .post('/users')
-      .send({
-        name: 'popomore',
-      });
+        .post('/users')
+        .send({
+          name: 'popomore',
+        });
       const user = yield app.model.User.findOne({
         where: { name: 'popomore' },
       });
