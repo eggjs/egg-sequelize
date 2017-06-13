@@ -12,6 +12,9 @@ module.exports = app => {
     updated_at: DATE,
   }, {
     tableName: 'the_monkeys',
+
+    classMethods: {
+    },
   });
 
   Monkey.findUser = function* () {
