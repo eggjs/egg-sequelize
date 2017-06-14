@@ -47,6 +47,8 @@ exports.sequelize = {
   port: '3306',
   username: 'root',
   password: '',
+
+  migrationsPath: './migrations', // defined your migrations file path
 };
 ```
 - `config/plugin.js`
