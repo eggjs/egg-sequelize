@@ -2,7 +2,7 @@
 
 module.exports = app => {
   const { STRING, INTEGER, DATE } = app.Sequelize;
-  return app.model.define('monkey', {
+  const Monkey = app.model.define('monkey', {
     name: {
       type: STRING,
       allowNull: false,
@@ -12,10 +12,17 @@ module.exports = app => {
     updated_at: DATE,
   }, {
     tableName: 'the_monkeys',
+
     classMethods: {
-      * findUser() {
-        return yield app.model.User.find({ id: 1 });
-      },
+    },
+
+    instanceMethods: {
     },
   });
+
+  Monkey.findUser = function* () {
+    return yield app.model.User.find({ id: 1 });
+  };
+
+  return Monkey;
 };
