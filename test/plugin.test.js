@@ -13,7 +13,7 @@ describe('test/plugin.test.js', () => {
     });
     return app.ready();
   });
-  before(() => app.model.sync({ force: true }));
+  before(() => app.model.sync({ alter: true }));
 
   after(mm.restore);
 
@@ -24,6 +24,7 @@ describe('test/plugin.test.js', () => {
 
     it('ctx model property getter', () => {
       const ctx = app.mockContext();
+      console.log(ctx.model.User);
       assert.ok(ctx.model);
       assert.ok(ctx.model.User);
       assert.ok(ctx.model.Monkey);
@@ -88,10 +89,10 @@ describe('test/plugin.test.js', () => {
       app.mockCsrf();
 
       yield request(app.callback())
-      .post('/users')
-      .send({
-        name: 'popomore',
-      });
+        .post('/users')
+        .send({
+          name: 'popomore',
+        });
       const user = yield app.model.User.findOne({
         where: { name: 'popomore' },
       });

@@ -1,6 +1,8 @@
 # egg-sequelize
 
-Sequelize plugin in egg
+[Sequelize](http://sequelizejs.com) plugin for Egg.js.
+
+> NOTE: This plugin just for integrate Sequelize into Egg.js, more documention please visit http://sequelizejs.com.
 
 [![NPM version][npm-image]][npm-url]
 [![build status][travis-image]][travis-url]
@@ -22,16 +24,14 @@ Sequelize plugin in egg
 [download-image]: https://img.shields.io/npm/dm/egg-sequelize.svg?style=flat-square
 [download-url]: https://npmjs.org/package/egg-sequelize
 
-Egg's sequelize plugin.
-
 ## Install
 
 ```bash
 $ npm i --save egg-sequelize
+$ npm install --save mysql2 # For both mysql and mariadb dialects
 
-# And one of the following:
-$ npm install --save pg pg-hstore
-$ npm install --save mysql # For both mysql and mariadb dialects
+# Or use other database backend.
+$ npm install --save pg pg-hstore # PostgreSQL
 $ npm install --save tedious # MSSQL
 ```
 
@@ -39,6 +39,7 @@ $ npm install --save tedious # MSSQL
 ## Usage & configuration
 
 - `config.default.js`
+
 ```js
 exports.sequelize = {
   dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
@@ -51,7 +52,9 @@ exports.sequelize = {
   migrationsPath: './migrations', // defined your migrations file path
 };
 ```
+
 - `config/plugin.js`
+
 ``` js
 exports.sequelize = {
   enable: true,
@@ -99,20 +102,25 @@ Define a model first.
 module.exports = app => {
   const { STRING, INTEGER, DATE } = app.Sequelize;
 
-  return app.model.define('user', {
+  const User = app.model.define('user', {
     login: STRING,
     name: STRING(30),
     password: STRING(32),
     age: INTEGER,
+    last_sign_in_at: DATE,
     created_at: DATE,
     updated_at: DATE,
-  }, {
-    classMethods: {
-      * findByLogin(login) {
-        return yield this.findOne({ login: login });
-      },
-    },
   });
+
+  User.findByLogin = function* (login) {
+    return yield this.findOne({ login: login });
+  }
+
+  User.prototype.logSignin = function* () {
+    yield this.update({ last_sign_in_at: new Date() });
+  }
+
+  return User;
 };
 
 ```
@@ -127,13 +135,17 @@ module.exports = app => {
       const users = yield this.ctx.model.User.findAll();
       this.ctx.body = users;
     }
+
+    * show() {
+      const user = yield this.ctx.model.User.findByLogin(this.ctx.params.login);
+      yield user.logSignin();
+      this.ctx.body = user;
+    }
   }
 }
 ```
 
 ### Full example
-
-
 
 ```js
 // app/model/post.js
@@ -141,18 +153,18 @@ module.exports = app => {
 module.exports = app => {
   const { STRING, INTEGER, DATE } = app.Sequelize;
 
-  return app.model.define('Post', {
+  const Post = app.model.define('Post', {
     name: STRING(30),
     user_id: INTEGER,
     created_at: DATE,
     updated_at: DATE,
-  }, {
-    classMethods: {
-      associate() {
-        app.model.Post.belongsTo(app.model.User, { as: 'user' });
-      }
-    }
   });
+
+  Post.associate = function() {
+    app.model.Post.belongsTo(app.model.User, { as: 'user' });
+  }
+
+  return Post;
 };
 ```
 
