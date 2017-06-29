@@ -13,7 +13,7 @@ describe('test/plugin.test.js', () => {
     });
     return app.ready();
   });
-  before(() => app.model.sync({ alter: true }));
+  before(() => app.model.sync({ force: true }));
 
   after(mm.restore);
 
@@ -24,7 +24,6 @@ describe('test/plugin.test.js', () => {
 
     it('ctx model property getter', () => {
       const ctx = app.mockContext();
-      console.log(ctx.model.User);
       assert.ok(ctx.model);
       assert.ok(ctx.model.User);
       assert.ok(ctx.model.Monkey);
@@ -105,4 +104,18 @@ describe('test/plugin.test.js', () => {
       assert(res.body.name === 'popomore');
     });
   });
+
+  describe('Associate', () => {
+
+    it('ctx model associate init success', () => {
+      const ctx = app.mockContext();
+      assert.ok(ctx.model);
+      assert.ok(ctx.model.User);
+      assert.ok(ctx.model.User.prototype.hasPosts);
+      assert.ok(ctx.model.Post);
+    });
+
+  });
+
 });
+

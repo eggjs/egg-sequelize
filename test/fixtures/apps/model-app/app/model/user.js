@@ -11,6 +11,8 @@ module.exports = app => {
 
   User.associate = function() {
     assert.ok(app.model.User);
+    assert.ok(app.model.Post);
+    app.model.User.hasMany(app.model.Post, { as: 'posts', foreignKey: 'user_id' });
   };
 
   User.test = function* () {

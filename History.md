@@ -1,4 +1,16 @@
 
+3.0.1 / 2017-06-19
+==================
+
+  * fix: init associate should after load of models (#20)
+
+3.0.0 / 2017-06-19
+==================
+
+  * feat: Upgrade Sequelize V4. (#18)
+  * docs: add sync docs (#17)
+  * docs(readme): fix the full example with association (#16)
+
 2.1.4 / 2017-05-11
 ==================
 
