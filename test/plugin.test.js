@@ -105,6 +105,20 @@ describe('test/plugin.test.js', () => {
     });
   });
 
+  describe('Test raw queries', () => {
+    it('should get data', function* () {
+      app.mockCsrf();
+      yield request(app.callback())
+        .post('/users')
+        .send({
+          name: 'raw queries',
+        });
+      const rs = yield app.sequelize.query('SELECT * FROM users WHERE name = \'raw queries\'');
+      assert(rs[0].length === 1);
+      assert(rs[0][0].name === 'raw queries');
+    });
+  });
+
   describe('Associate', () => {
 
     it('ctx model associate init success', () => {
