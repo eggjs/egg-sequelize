@@ -211,6 +211,17 @@ Mention, If you want to sync models you defined to db(mysql or etc.), you should
   };
 ```
 
+## Execute raw / already prepared SQL queries
+
+`app.sequelize` is the alias of Sequelize instance.
+
+``` js
+yield app.sequelize.query("SELECT * FROM `users`")
+
+```
+
+More documents please refer to [Raw queries](http://docs.sequelizejs.com/manual/tutorial/raw-queries.html)
+
 ## Migrations
 
 If you have added scripts of egg-sequelize into your `package.json`, now you can:
