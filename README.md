@@ -250,7 +250,7 @@ or for `production` environment:
 $ NODE_ENV=production npm run migrate:up
 ```
 
-And you may need to read [Sequelize - Migrations](http://docs.sequelizejs.com/en/v3/docs/migrations/) to learn about how to write Migrations.
+And you may need to read [Sequelize - Migrations](http://docs.sequelizejs.com/manual/tutorial/migrations.html) to learn about how to write Migrations.
 
 ## Recommended example
 
