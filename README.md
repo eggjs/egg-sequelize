@@ -239,6 +239,33 @@ or for `production` environment:
 $ NODE_ENV=production npm run migrate:up
 ```
 
+Write migrations with **Generator** friendly, you should use `co.wrap` method:
+
+```js
+'use strict';
+const co = require('co');
+
+module.exports = {
+  up: co.wrap(function *(db, Sequelize) {
+    const { STRING, INTEGER, DATE } = Sequelize;
+
+    yield db.createTable('users', {
+      id: { type: INTEGER, primaryKey: true, autoIncrement: true },
+      name: { type: STRING, allowNull: false },
+      email: { type: STRING, allowNull: false },
+      created_at: DATE,
+      updated_at: DATE,
+    });
+
+    yield db.addIndex('users', ['email'], { indicesType: 'UNIQUE' });
+  }),
+
+  down: co.wrap(function *(db, Sequelize) {
+    yield db.dropTable('users');
+  }),
+};
+```
+
 And you may need to read [Sequelize - Migrations](http://docs.sequelizejs.com/manual/tutorial/migrations.html) to learn about how to write Migrations.
 
 ## Recommended example
