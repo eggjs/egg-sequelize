@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-EGG_SEQUELIZE_ROOT=./node_modules/egg-sequelize
-SEQUELIZE_ROOT=$EGG_SEQUELIZE_ROOT/node_modules/sequelize-cli
-if [ ! -d "$SEQUELIZE_ROOT" ]; then
-    SEQUELIZE_ROOT=./node_modules/sequelize-cli
-fi
-$SEQUELIZE_ROOT/bin/sequelize --optionsPath $EGG_SEQUELIZE_ROOT/lib/sequelizerc.js $@
