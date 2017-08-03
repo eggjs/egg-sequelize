@@ -42,7 +42,7 @@
     "autod": "autod"
   },
   "bin": {
-    "egg-sequelize": "bin/egg-sequelize"
+    "egg-sequelize": "bin/egg-sequelize.js"
   },
   "files": [
     "app",
