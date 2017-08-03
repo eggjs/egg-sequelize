@@ -1,6 +1,6 @@
 {
   "name": "egg-sequelize",
-  "version": "3.0.1",
+  "version": "3.1.0",
   "description": "egg Sequelize plugin",
   "eggPlugin": {
     "name": "sequelize"
@@ -53,7 +53,7 @@
     "bin"
   ],
   "ci": {
-    "version": "6, 7"
+    "version": "6, 8"
   },
   "repository": {
     "type": "git",
