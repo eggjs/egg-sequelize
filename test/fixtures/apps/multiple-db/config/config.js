@@ -4,12 +4,10 @@ exports.sequelize = {
   clients: {
     db1: {
       database: 'test1',
-      name: 'db1',
       modelDir: 'app/model/db1',
     },
     db2: {
       database: 'test2',
-      name: 'db2',
       modelDir: 'app/model/db2',
     },
   },
