@@ -1,4 +1,13 @@
 
+3.1.0 / 2017-08-03
+==================
+
+  * deps: update dependencies (#26)
+  * refactor: rewrite cli script with plain js instead of Shell to support multi-platform. (#25)
+  * docs: add a migration example for show up use `co.wrap`. (#24)
+  * docs: fix migration url (#22)
+  * docs: update history (#21)
+
 3.0.1 / 2017-06-19
 ==================
 
