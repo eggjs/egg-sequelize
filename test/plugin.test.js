@@ -13,7 +13,7 @@ describe('test/plugin.test.js', () => {
     });
     return app.ready();
   });
-  before(() => app.model.sync({ force: true }));
+  before(() => app.model.sync({ }));
 
   after(mm.restore);
 
