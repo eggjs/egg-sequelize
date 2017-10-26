@@ -200,7 +200,9 @@ module.exports = app => {
 
 ## Sync model to db
 
-Mention, If you want to sync models you defined to db(mysql or etc.), you should put sync operation in `app.js`.
+**We strongly recommend you to use [migrations](https://github.com/eggjs/egg-sequelize#migrations) to create or migrate database.**
+
+If you want to sync models you defined to db(mysql or etc.), you should put sync operation in `app.js`. We don't recommed you to do this, especialy in production mode, it will drop and recreate database everytime you restart your app, it may also cause problem in cluster mode.
 
 ```js
 // {app_root}/app.js
