@@ -209,9 +209,11 @@ If you want to sync models you defined to db(mysql or etc.) in development, you 
 ```js
 // {app_root}/app.js
   module.exports = app => {
-    app.beforeStart(function* () {
-      yield app.model.sync({force: true});
-    });
+    if (app.config.env === 'local') {
+      app.beforeStart(function* () {
+        yield app.model.sync({force: true});
+      });
+    }
   };
 ```
 
