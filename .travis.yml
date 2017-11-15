@@ -2,6 +2,7 @@ sudo: false
 language: node_js
 node_js:
   - '6'
+  - '7'
   - '8'
 install:
   - npm i npminstall && npminstall
@@ -13,3 +14,5 @@ services:
   - mysql
 before_install:
   - mysql -e 'CREATE DATABASE IF NOT EXISTS test;'
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS test1;'
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS test2;'
