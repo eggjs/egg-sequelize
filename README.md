@@ -2,7 +2,7 @@
 
 [Sequelize](http://sequelizejs.com) plugin for Egg.js.
 
-> NOTE: This plugin just for integrate Sequelize into Egg.js, more documention please visit http://sequelizejs.com.
+> NOTE: This plugin just for integrate Sequelize into Egg.js, more documentation please visit http://sequelizejs.com.
 
 [![NPM version][npm-image]][npm-url]
 [![build status][travis-image]][travis-url]
