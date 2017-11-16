@@ -1,0 +1,7 @@
+{
+  "name": "model-plugin",
+  "eggPlugin": {
+    "name": "model",
+    "dependencies": ["sequelize"]
+  }
+}
