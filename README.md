@@ -2,7 +2,7 @@
 
 [Sequelize](http://sequelizejs.com) plugin for Egg.js.
 
-> NOTE: This plugin just for integrate Sequelize into Egg.js, more documention please visit http://sequelizejs.com.
+> NOTE: This plugin just for integrate Sequelize into Egg.js, more documentation please visit http://sequelizejs.com.
 
 [![NPM version][npm-image]][npm-url]
 [![build status][travis-image]][travis-url]
@@ -93,6 +93,8 @@ Please put models under `app/model` dir.
 ### Standard
 
 Define a model first.
+
+> NOTE: `app.model` is an [Instance of Sequelize](http://docs.sequelizejs.com/class/lib/sequelize.js~Sequelize.html#instance-constructor-constructor), so you can use methods like: `app.model.sync, app.model.query ...`
 
 ```js
 // app/model/user.js
