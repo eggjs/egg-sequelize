@@ -94,6 +94,8 @@ Please put models under `app/model` dir.
 
 Define a model first.
 
+> NOTE: `app.model` is an [Instance of Sequelize](http://docs.sequelizejs.com/class/lib/sequelize.js~Sequelize.html#instance-constructor-constructor), so you can use methods like: `app.model.sync, app.model.query ...`
+
 ```js
 // app/model/user.js
 
