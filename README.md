@@ -204,8 +204,6 @@ module.exports = app => {
 
 **We strongly recommend you to use [migrations](https://github.com/eggjs/egg-sequelize#migrations) to create or migrate database.**
 
-If you want to sync models you defined to db(mysql or etc.) in development, you can put sync operation in `app.js`. 
-
 **This code should only be used in development.**
 
 ```js
