@@ -94,6 +94,8 @@ Please put models under `app/model` dir(Also work in framework and plugin).
 
 Define a model first.
 
+> NOTE: `app.model` is an [Instance of Sequelize](http://docs.sequelizejs.com/class/lib/sequelize.js~Sequelize.html#instance-constructor-constructor), so you can use methods like: `app.model.sync, app.model.query ...`
+
 ```js
 // app/model/user.js
 
@@ -200,14 +202,18 @@ module.exports = app => {
 
 ## Sync model to db
 
-Mention, If you want to sync models you defined to db(mysql or etc.), you should put sync operation in `app.js`.
+**We strongly recommend you to use [migrations](https://github.com/eggjs/egg-sequelize#migrations) to create or migrate database.**
+
+**This code should only be used in development.**
 
 ```js
 // {app_root}/app.js
   module.exports = app => {
-    app.beforeStart(function* () {
-      yield app.model.sync({force: true});
-    });
+    if (app.config.env === 'local') {
+      app.beforeStart(function* () {
+        yield app.model.sync({force: true});
+      });
+    }
   };
 ```
 
