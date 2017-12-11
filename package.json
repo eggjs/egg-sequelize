@@ -15,7 +15,8 @@
   "dependencies": {
     "chalk": "^2.0.1",
     "sequelize": "^4.4.2",
-    "sequelize-cli": "^2.7.0"
+    "sequelize-cli": "^2.7.0",
+    "snyk": "^1.42.6"
   },
   "devDependencies": {
     "autod": "^2.9.0",
@@ -39,7 +40,9 @@
     "cov": "egg-bin cov",
     "lint": "eslint .",
     "ci": "npm run lint && npm run cov",
-    "autod": "autod"
+    "autod": "autod",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "bin": {
     "egg-sequelize": "bin/egg-sequelize.js"
@@ -64,5 +67,6 @@
   },
   "homepage": "https://github.com/eggjs/egg-sequelize#readme",
   "author": "jtyjty99999",
-  "license": "MIT"
+  "license": "MIT",
+  "snyk": true
 }
