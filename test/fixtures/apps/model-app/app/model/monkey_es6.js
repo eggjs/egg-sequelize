@@ -27,9 +27,8 @@ class MonkeyEs6 extends Model {
     };
   }
 
-  static async findUser() {
-    const user = await this.app.model.User.find({ id: 1 });
-    return user;
+  static findUser() {
+    return this.app.model.User.find({ id: 1 });
   }
 }
 
