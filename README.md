@@ -123,6 +123,40 @@ module.exports = app => {
   return User;
 };
 
+// or with es6
+
+const { Sequelize, Model } = require('egg-sequelize');
+const { STRING, INTEGER, DATE } = Sequelize;
+
+class User extends Model {
+  static get modelOptions() {
+    const modelName = 'user';
+    const attributes = {
+      login: STRING,
+      name: STRING(30),
+      password: STRING(32),
+      age: INTEGER,
+      last_sign_in_at: DATE,
+      created_at: DATE,
+      updated_at: DATE,
+    };
+    const options = {};
+    return { modelName, attributes, options };
+  }
+
+  async logSignin() {
+    await this.update({ last_sign_in_at: new Date() });
+  }
+
+  static findByLogin(login) {
+    return this.findOne({ login });
+  }
+}
+
+module.exports = User;
+
+
+
 ```
 
 Now you can use it in your controller:

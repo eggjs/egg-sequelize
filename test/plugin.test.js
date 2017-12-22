@@ -28,6 +28,7 @@ describe('test/plugin.test.js', () => {
       assert.ok(ctx.model.User);
       assert.ok(ctx.model.Monkey);
       assert.ok(ctx.model.Person);
+      assert.ok(ctx.model.MonkeyEs6);
     });
 
     it('model not load non Sequelize files', function* () {
@@ -41,6 +42,7 @@ describe('test/plugin.test.js', () => {
       assert(app.model.Person.tableName === 'people');
       assert(app.model.User.tableName === 'users');
       assert(app.model.Monkey.tableName === 'the_monkeys');
+      assert(app.model.MonkeyEs6.tableName === 'the_monkeys_se6');
     });
   });
 
