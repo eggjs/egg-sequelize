@@ -98,10 +98,33 @@ describe('test/plugin.test.js', () => {
       assert.ok(user);
       assert(user.name === 'popomore');
       assert(user.isNewRecord === false);
+      assert(user.space_id === null);
       const res = yield request(app.callback())
         .get(`/users/${user.id}`);
       assert(res.status === 200);
       assert(res.body.name === 'popomore');
+    });
+
+    it('should auto set space_id', function* () {
+      app.mockCsrf();
+
+      yield request(app.callback())
+        .post('/users?space_id=101')
+        .send({
+          name: 'popomore101',
+        });
+      const user = yield app.model.User.findOne({
+        where: { name: 'popomore101' },
+      });
+      assert.ok(user);
+      assert(user.name === 'popomore101');
+      assert(user.isNewRecord === false);
+      assert(user.space_id === 101);
+      const res = yield request(app.callback())
+        .get(`/users/${user.id}`);
+      assert(res.status === 200);
+      assert(res.body.name === 'popomore101');
+      assert(res.body.space_id === 101);
     });
   });
 
@@ -118,4 +141,3 @@ describe('test/plugin.test.js', () => {
   });
 
 });
-
