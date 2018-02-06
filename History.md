@@ -1,4 +1,12 @@
 
+3.1.1 / 2018-02-06
+==================
+
+  * fix: EGG_SERVER_ENV support for seuqlieze cli (#40)
+  * docs: fix db sync doc (#31)
+  * docs: add README for `app.model` (#34)
+  * docs(README): fix a typo (#33)
+
 3.1.0 / 2017-08-03
 ==================
 
