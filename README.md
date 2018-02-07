@@ -113,7 +113,11 @@ module.exports = app => {
   });
 
   User.findByLogin = function* (login) {
-    return yield this.findOne({ login: login });
+    return yield this.findOne({
+      where: {
+        login: login
+      }
+    });
   }
 
   User.prototype.logSignin = function* () {
