@@ -2,11 +2,6 @@ import Sequelize from "sequelize";
 
 declare module 'egg' {
 
-  // extend service
-  interface IService {
-
-  }
-
   // extend app
   interface Application {
     Sequelize: Sequelize;
@@ -15,7 +10,6 @@ declare module 'egg' {
 
   // extend context
   interface Context {
-    Sequelize: Sequelize;
     model: Sequelize.Sequelize;
   }
 
@@ -25,7 +19,7 @@ declare module 'egg' {
       dialect: string;
       database: string;
       host: string;
-      port: string;
+      port: number;
       username: string;
       password: string;
     };
