@@ -1,16 +1,16 @@
-import Sequelize from "sequelize";
+import sequelize from "sequelize";
 
 declare module 'egg' {
 
   // extend app
   interface Application {
-    Sequelize: Sequelize;
-    model: Sequelize.Sequelize;
+    Sequelize: sequelize;
+    model: sequelize.Sequelize;
   }
 
   // extend context
   interface Context {
-    model: Sequelize.Sequelize;
+    model: sequelize.Sequelize;
   }
 
   // extend your config
