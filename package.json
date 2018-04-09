@@ -13,6 +13,7 @@
     "orm"
   ],
   "dependencies": {
+    "@types/sequelize": "^4.27.14",
     "chalk": "^2.0.1",
     "sequelize": "^4.4.2",
     "sequelize-cli": "^2.7.0"
