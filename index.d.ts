@@ -2,24 +2,24 @@ import Sequelize from "sequelize";
 
 declare module 'egg' {
 
-  // 扩展 service
+  // extend service
   interface IService {
 
   }
 
-  // 扩展 app
+  // extend app
   interface Application {
     Sequelize: Sequelize;
     model: Sequelize.Sequelize;
   }
 
-  // 扩展 context
+  // extend context
   interface Context {
     Sequelize: Sequelize;
     model: Sequelize.Sequelize;
   }
 
-  // 扩展你的配置
+  // extend your config
   interface EggAppConfig {
     sequelize: {
       dialect: string;
