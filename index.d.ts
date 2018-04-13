@@ -4,7 +4,7 @@ declare module 'egg' {
 
   // extend app
   interface Application {
-    Sequelize: sequelize;
+    Sequelize: sequelize.SequelizeStatic;
     model: sequelize.Sequelize;
   }
 
@@ -15,14 +15,7 @@ declare module 'egg' {
 
   // extend your config
   interface EggAppConfig {
-    sequelize: {
-      dialect: string;
-      database: string;
-      host: string;
-      port: number;
-      username: string;
-      password: string;
-    };
+    sequelize: sequelize.Options;
   }
 
 }
