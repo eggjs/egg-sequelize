@@ -1,4 +1,13 @@
 
+3.1.3 / 2018-04-13
+==================
+
+**fixes**
+  * [[`c8a1c60`](http://github.com/eggjs/egg-sequelize/commit/c8a1c60244606158b1b3a4193433e764a60e0966)] - fix: using `sequelize.Options` for  sequelize config. (#48) (ZhengFang <<215566435@qq.com>>)
+
+**others**
+  * [[`2d63647`](http://github.com/eggjs/egg-sequelize/commit/2d6364795d62d91b7d498b2c3ec6fa3be8dc9b58)] - chore:TypeScript support. (#47) (duncup <<dlmsoft.wolf@gmail.com>>)
+
 3.1.2 / 2018-02-27
 ==================
 
