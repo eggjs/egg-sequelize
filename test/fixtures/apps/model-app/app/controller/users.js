@@ -7,9 +7,12 @@ module.exports = app => {
       this.ctx.body = user;
     }
 
-    * create() {
-      yield app.model.User.create({
-        name: this.ctx.request.body.name,
+    * create(ctx) {
+      if (ctx.query.space_id) {
+        ctx.space_id = parseInt(ctx.query.space_id);
+      }
+      yield ctx.model.User.create({
+        name: ctx.request.body.name,
       });
     }
   };

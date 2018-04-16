@@ -7,6 +7,10 @@ module.exports = app => {
   const User = app.model.define('user', {
     name: STRING(30),
     age: INTEGER,
+    space_id: {
+      type: INTEGER,
+      allowNull: true,
+    },
   });
 
   User.associate = function() {
@@ -23,6 +27,13 @@ module.exports = app => {
     assert(monkey.isNewRecord === false);
     assert(monkey.name === 'The Monkey');
   };
+
+  User.addHook('beforeCreate', instance => {
+    if (instance.ctx && instance.ctx.space_id) {
+      console.log('auto set space_id to %s on User beforeCreate hook', instance.ctx.space_id);
+      instance.space_id = instance.ctx.space_id;
+    }
+  });
 
   return User;
 };
