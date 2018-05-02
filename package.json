@@ -51,7 +51,8 @@
     "agent.js",
     "lib",
     "app.js",
-    "bin"
+    "bin",
+    "index.d.ts"
   ],
   "ci": {
     "version": "6, 8"
