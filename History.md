@@ -1,4 +1,10 @@
 
+3.1.4 / 2018-05-02
+==================
+
+**fixes**
+  * [[`1fb8585`](http://github.com/eggjs/egg-sequelize/commit/1fb858533132efb1ff2b2409ffa3656cb7b48b21)] - fix: add index.d.ts to pkg.files (#51) (duncup <<dlmsoft.wolf@gmail.com>>)
+
 3.1.3 / 2018-04-13
 ==================
 
