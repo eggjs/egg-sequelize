@@ -13,7 +13,7 @@ if (!fs.existsSync(sequelizeRoot)) {
   sequelizeRoot = './node_modules/sequelize-cli';
 }
 
-const sequelizeBin = path.resolve(sequelizeRoot, './bin/sequelize');
+const sequelizeBin = path.resolve(sequelizeRoot, './lib/sequelize');
 const args = [
   sequelizeBin,
   '--optionsPath',
