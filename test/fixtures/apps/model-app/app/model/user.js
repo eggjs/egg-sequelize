@@ -18,7 +18,7 @@ module.exports = app => {
   User.test = function* () {
     assert(app.config);
     assert(app.model.User === this);
-    const monkey = yield app.model.Monkey.create({ name: 'The Monkey' });
+    const monkey = yield app.model.Subfolder_Monkey.create({ name: 'The Monkey' });
     assert(monkey.id);
     assert(monkey.isNewRecord === false);
     assert(monkey.name === 'The Monkey');

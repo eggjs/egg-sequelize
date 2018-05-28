@@ -26,8 +26,8 @@ describe('test/plugin.test.js', () => {
       const ctx = app.mockContext();
       assert.ok(ctx.model);
       assert.ok(ctx.model.User);
-      assert.ok(ctx.model.Monkey);
-      assert.ok(ctx.model.Person);
+      assert.ok(ctx.model.Subfolder_Monkey);
+      assert.ok(ctx.model.Subfolder_Person);
     });
 
     it('model not load non Sequelize files', function* () {
@@ -38,9 +38,9 @@ describe('test/plugin.test.js', () => {
     });
 
     it('has right tableName', () => {
-      assert(app.model.Person.tableName === 'people');
+      assert(app.model.Subfolder_Person.tableName === 'people');
       assert(app.model.User.tableName === 'users');
-      assert(app.model.Monkey.tableName === 'the_monkeys');
+      assert(app.model.Subfolder_Monkey.tableName === 'the_monkeys');
     });
   });
 
