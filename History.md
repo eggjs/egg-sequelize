@@ -1,4 +1,13 @@
 
+3.1.5 / 2018-07-03
+==================
+
+**features**
+  * [[`987e394`](http://github.com/eggjs/egg-sequelize/commit/987e3940da2bc392e1bb6da77055942c3ecf5b0e)] - feat(sequelize-cli): upgrade to 4.0.0 (#52) (Lpmvb <<xiangdemei@yahoo.com>>)
+
+**others**
+  * [[`ff79aba`](http://github.com/eggjs/egg-sequelize/commit/ff79aba467d13efbc017e08247925fcb93e6aaff)] - Retry 3 times on startup when database connect fail in temporary, to avoid Egg start failed. (#57) (Jason Lee <<huacnlee@gmail.com>>)
+
 3.1.4 / 2018-05-02
 ==================
 
