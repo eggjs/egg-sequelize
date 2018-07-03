@@ -1,4 +1,10 @@
 
+2.1.5 / 2018-07-03
+==================
+
+**others**
+  * [[`921536f`](http://github.com/eggjs/egg-sequelize/commit/921536f20578c213dfe6c4d0c09418c169a7c8dc)] - Retry 3 times on startup when database connect fail in temporary, to avoid Egg start failed. (#56) (Jason Lee <<huacnlee@gmail.com>>)
+
 2.1.4 / 2017-05-11
 ==================
 
