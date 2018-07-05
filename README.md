@@ -75,7 +75,7 @@ More documents please refer to [Sequelize.js](http://sequelize.readthedocs.io/en
 
 ## Model files
 
-Please put models under `app/model` dir.
+Please put models under `app/model` dir(Also work in framework and plugin).
 
 ## Conventions
 

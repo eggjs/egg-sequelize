@@ -4,12 +4,12 @@ const assert = require('assert');
 const mm = require('egg-mock');
 const request = require('supertest');
 
-describe('test/plugin.test.js', () => {
+describe('test/inherit.test.js', () => {
   let app;
 
   before(() => {
     app = mm.app({
-      baseDir: 'apps/model-app',
+      baseDir: 'apps/plugin-app',
     });
     return app.ready();
   });
@@ -118,3 +118,4 @@ describe('test/plugin.test.js', () => {
   });
 
 });
+
