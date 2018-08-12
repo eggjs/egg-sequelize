@@ -28,14 +28,14 @@ describe('test/datasources.test.js', () => {
 
     it('ctx model property getter', () => {
       const ctx = app.mockContext();
-      assert.ok(ctx.model);
-      assert.ok(ctx.model.User);
-      assert.ok(ctx.model.Monkey);
-      assert.ok(ctx.model.Person);
-      assert.ok(ctx.sequelize);
-      assert.ok(ctx.sequelize.User);
-      assert.ok(ctx.sequelize.Monkey);
-      assert.ok(ctx.sequelize.Person);
+      assert(ctx.model);
+      assert(ctx.model.User);
+      assert(ctx.model.Monkey);
+      assert(ctx.model.Person);
+      assert(ctx.sequelize);
+      assert(ctx.sequelize.User);
+      assert(ctx.sequelize.Monkey);
+      assert(!ctx.sequelize.Person); // ignored
       assert(ctx.model.User !== ctx.sequelize.User);
     });
 
@@ -43,6 +43,8 @@ describe('test/datasources.test.js', () => {
       assert(app.model.Person.tableName === 'people');
       assert(app.model.User.tableName === 'users');
       assert(app.model.Monkey.tableName === 'the_monkeys');
+      assert(app.sequelize.User.tableName === 'users');
+      assert(app.sequelize.Monkey.tableName === 'the_monkeys');
     });
   });
 
