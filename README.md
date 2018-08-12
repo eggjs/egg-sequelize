@@ -48,6 +48,8 @@ exports.sequelize = {
   port: '3306',
   username: 'root',
   password: '',
+  // delegate: 'myModel', // load all models to `app[delegate]` and `ctx[delegate]`, default to `model`
+  // baseDir: 'my_model', // load all files in `app/${baseDir}` as models, default to `model`
 };
 ```
 
@@ -142,6 +144,30 @@ module.exports = app => {
 ### Associate
 
 Define all your associations in `Model.associate()` and egg-sequelize will execute it after all models loaded. See example below.
+
+### Multiple Datasources
+
+egg-sequelize support load multiple datasources independently. You can use `config.sequelize.datasources` to configure and load multiple datasources.
+
+```js
+// config/config.default.js
+exports.sequelize = {
+  datasources: [
+    {
+      delegate: 'model', // load all models to app.model and ctx.model
+      baseDir: 'model', // load models from `app/model/*.js`
+      database: 'biz',
+      // other sequelize configurations
+    },
+    {
+      delegate: 'admninModel', // load all models to app.adminModel and ctx.adminModel
+      baseDir: 'admin_model', // load models from `app/admin_model/*.js`
+      database: 'admin',
+      // other sequelize configurations
+    },
+  ],
+};
+```
 
 ### Customize Sequelize
 
