@@ -2,13 +2,13 @@
 
 module.exports = app => {
   return class UsersController extends app.Controller {
-    * show() {
-      const user = yield this.ctx.model.User.findById(this.ctx.params.id);
+    async show() {
+      const user = await this.ctx.model.User.findById(this.ctx.params.id);
       this.ctx.body = user;
     }
 
-    * create() {
-      yield app.model.User.create({
+    async create() {
+      await app.model.User.create({
         name: this.ctx.request.body.name,
       });
     }

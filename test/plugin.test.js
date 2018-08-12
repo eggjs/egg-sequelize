@@ -30,7 +30,7 @@ describe('test/plugin.test.js', () => {
       assert.ok(ctx.model.Person);
     });
 
-    it('model not load non Sequelize files', function* () {
+    it('model not load non Sequelize files', async function() {
       assert(!('Other' in app.model));
 
       const ctx = app.mockContext();
@@ -51,7 +51,7 @@ describe('test/plugin.test.js', () => {
       config = app.model.options;
     });
 
-    it('should work with default config', function* () {
+    it('should work with default config', async function() {
       assert(config.define.freezeTableName === false);
       assert(config.port === '3306');
       assert(config.username === 'root');
@@ -60,7 +60,7 @@ describe('test/plugin.test.js', () => {
       assert(config.benchmark === true);
     });
 
-    it('should work with fixture configs', function* () {
+    it('should work with fixture configs', async function() {
       assert(config.dialect === 'mysql');
       assert(config.host === '127.0.0.1');
       assert(config.pool.idle === 10000);
@@ -70,12 +70,12 @@ describe('test/plugin.test.js', () => {
   });
 
   describe('Test model', () => {
-    it('User.test method work', function* () {
-      yield app.model.User.test();
+    it('User.test method work', async function() {
+      await app.model.User.test();
     });
 
-    it('should work timestramp', function* () {
-      const user = yield app.model.User.create({ name: 'huacnlee' });
+    it('should work timestramp', async function() {
+      const user = await app.model.User.create({ name: 'huacnlee' });
       assert(user.isNewRecord === false);
       assert(user.name === 'huacnlee');
       assert(user.created_at !== null);
@@ -84,21 +84,21 @@ describe('test/plugin.test.js', () => {
   });
 
   describe('Test controller', () => {
-    it('should get data from create', function* () {
+    it('should get data from create', async function() {
       app.mockCsrf();
 
-      yield request(app.callback())
+      await request(app.callback())
         .post('/users')
         .send({
           name: 'popomore',
         });
-      const user = yield app.model.User.findOne({
+      const user = await app.model.User.findOne({
         where: { name: 'popomore' },
       });
       assert.ok(user);
       assert(user.name === 'popomore');
       assert(user.isNewRecord === false);
-      const res = yield request(app.callback())
+      const res = await request(app.callback())
         .get(`/users/${user.id}`);
       assert(res.status === 200);
       assert(res.body.name === 'popomore');
@@ -106,7 +106,6 @@ describe('test/plugin.test.js', () => {
   });
 
   describe('Associate', () => {
-
     it('ctx model associate init success', () => {
       const ctx = app.mockContext();
       assert.ok(ctx.model);
@@ -114,8 +113,5 @@ describe('test/plugin.test.js', () => {
       assert.ok(ctx.model.User.prototype.hasPosts);
       assert.ok(ctx.model.Post);
     });
-
   });
-
 });
-
