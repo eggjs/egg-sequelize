@@ -14,7 +14,6 @@
   ],
   "dependencies": {
     "@types/sequelize": "^4.27.14",
-    "chalk": "^2.0.1",
     "mkdirp": "^0.5.1",
     "mz-modules": "^2.1.0",
     "sequelize": "^4.4.2",
