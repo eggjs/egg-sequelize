@@ -50,6 +50,7 @@ exports.sequelize = {
   password: '',
   // delegate: 'myModel', // load all models to `app[delegate]` and `ctx[delegate]`, default to `model`
   // baseDir: 'my_model', // load all files in `app/${baseDir}` as models, default to `model`
+  // ignore: 'index.js', // ignore `app/${baseDir}/index.js` when load models
 };
 ```
 
