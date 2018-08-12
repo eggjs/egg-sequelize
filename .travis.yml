@@ -13,3 +13,4 @@ services:
   - mysql
 before_install:
   - mysql -e 'CREATE DATABASE IF NOT EXISTS test;'
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS test1;'

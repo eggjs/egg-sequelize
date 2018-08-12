@@ -2,7 +2,6 @@
 
 const assert = require('assert');
 const mm = require('egg-mock');
-const request = require('supertest');
 
 describe('test/plugin.test.js', () => {
   let app;
@@ -87,7 +86,7 @@ describe('test/plugin.test.js', () => {
     it('should get data from create', async function() {
       app.mockCsrf();
 
-      await request(app.callback())
+      await app.httpRequest(app.callback())
         .post('/users')
         .send({
           name: 'popomore',
@@ -98,7 +97,7 @@ describe('test/plugin.test.js', () => {
       assert.ok(user);
       assert(user.name === 'popomore');
       assert(user.isNewRecord === false);
-      const res = await request(app.callback())
+      const res = await app.httpRequest(app.callback())
         .get(`/users/${user.id}`);
       assert(res.status === 200);
       assert(res.body.name === 'popomore');
