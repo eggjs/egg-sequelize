@@ -139,6 +139,21 @@ module.exports = app => {
 }
 ```
 
+### Associate
+
+Define all your associations in `Model.associate()` and egg-sequelize will execute it after all models loaded. See example below.
+
+### Customize Sequelize
+
+By default, egg-sequelize will use sequelize@4, you can cusomize sequelize version by pass sequelize instance with `config.sequelize.Sequelize` like this:
+
+```js
+// config/config.default.js
+exports.sequelize = {
+  sequelize: require('sequelize');
+};
+```
+
 ### Full example
 
 ```js
