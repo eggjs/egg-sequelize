@@ -59,16 +59,6 @@ exports.sequelize = {
   package: 'egg-sequelize'
 }
 ```
-- `package.json`
-```json
-{
-  "scripts": {
-    "migrate:new": "egg-sequelize migration:create",
-    "migrate:up": "egg-sequelize db:migrate",
-    "migrate:down": "egg-sequelize db:migrate:undo"
-  }
-}
-```
 
 
 More documents please refer to [Sequelize.js](http://sequelize.readthedocs.io/en/v3/)
@@ -112,16 +102,16 @@ module.exports = app => {
     updated_at: DATE,
   });
 
-  User.findByLogin = function* (login) {
-    return yield this.findOne({
+  User.findByLogin = async (login) => {
+    return this.findOne({
       where: {
         login: login
       }
     });
   }
 
-  User.prototype.logSignin = function* () {
-    yield this.update({ last_sign_in_at: new Date() });
+  User.prototype.logSignin = async () => {
+    return this.update({ last_sign_in_at: new Date() });
   }
 
   return User;
@@ -135,14 +125,14 @@ Now you can use it in your controller:
 // app/controller/user.js
 module.exports = app => {
   return class UserController extends app.Controller {
-    * index() {
-      const users = yield this.ctx.model.User.findAll();
+    async index() {
+      const users = await this.ctx.model.User.findAll();
       this.ctx.body = users;
     }
 
-    * show() {
-      const user = yield this.ctx.model.User.findByLogin(this.ctx.params.login);
-      yield user.logSignin();
+    async show() {
+      const user = await this.ctx.model.User.findByLogin(this.ctx.params.login);
+      await user.logSignin();
       this.ctx.body = user;
     }
   }
@@ -177,8 +167,8 @@ module.exports = app => {
 // app/controller/post.js
 module.exports = app => {
   return class PostController extends app.Controller {
-    * index() {
-      const posts = yield this.ctx.model.Post.findAll({
+    async index() {
+      const posts = await this.ctx.model.Post.findAll({
         attributes: [ 'id', 'user_id' ],
         include: { model: this.ctx.model.User, as: 'user' },
         where: { status: 'publish' },
@@ -188,16 +178,16 @@ module.exports = app => {
       this.ctx.body = posts;
     }
 
-    * show() {
-      const post = yield this.ctx.model.Post.findById(this.params.id);
-      const user = yield post.getUser();
+    async show() {
+      const post = await this.ctx.model.Post.findById(this.params.id);
+      const user = await post.getUser();
       post.setDataValue('user', user);
       this.ctx.body = post;
     }
 
-    * destroy() {
-      const post = yield this.ctx.model.Post.findById(this.params.id);
-      yield post.destroy();
+    async destroy() {
+      const post = await this.ctx.model.Post.findById(this.params.id);
+      await post.destroy();
       this.ctx.body = { success: true };
     }
   }
@@ -206,85 +196,20 @@ module.exports = app => {
 
 ## Sync model to db
 
-**We strongly recommend you to use [migrations](https://github.com/eggjs/egg-sequelize#migrations) to create or migrate database.**
+**We strongly recommend you to use [Sequelize - Migrations](http://docs.sequelizejs.com/manual/tutorial/migrations.html) to create or migrate database.**
 
 **This code should only be used in development.**
 
 ```js
 // {app_root}/app.js
   module.exports = app => {
-    if (app.config.env === 'local') {
-      app.beforeStart(function* () {
-        yield app.model.sync({force: true});
+    if (app.config.env === 'local' || app.config.env === 'unittest') {
+      app.beforeStart(async () => {
+        await app.model.sync({force: true});
       });
     }
   };
 ```
-
-## Migrations
-
-If you have added scripts of egg-sequelize into your `package.json`, now you can:
-
-| Command | Description |
-|-----|------|
-| npm run migrate:new | Generate a new Migration file to ./migrations/ |
-| npm run migrate:up | Run Migration |
-| npm run migrate:down | Rollback once Migration |
-
-For example:
-
-```bash
-$ npm run migrate:up
-```
-
-For `unittest` environment:
-
-```bash
-$ EGG_SERVER_ENV=unittest npm run migrate:up
-```
-
-or for `prod` environment:
-
-```bash
-$ EGG_SERVER_ENV=prod npm run migrate:up
-```
-
-or for others environment:
-
-```bash
-$ EGG_SERVER_ENV=pre npm run migrate:up
-```
-
-This will load database config from `config/config.pre.js`.
-
-Write migrations with **Generator** friendly, you should use `co.wrap` method:
-
-```js
-'use strict';
-const co = require('co');
-
-module.exports = {
-  up: co.wrap(function *(db, Sequelize) {
-    const { STRING, INTEGER, DATE } = Sequelize;
-
-    yield db.createTable('users', {
-      id: { type: INTEGER, primaryKey: true, autoIncrement: true },
-      name: { type: STRING, allowNull: false },
-      email: { type: STRING, allowNull: false },
-      created_at: DATE,
-      updated_at: DATE,
-    });
-
-    yield db.addIndex('users', ['email'], { indicesType: 'UNIQUE' });
-  }),
-
-  down: co.wrap(function *(db, Sequelize) {
-    yield db.dropTable('users');
-  }),
-};
-```
-
-And you may need to read [Sequelize - Migrations](http://docs.sequelizejs.com/manual/tutorial/migrations.html) to learn about how to write Migrations.
 
 ## Recommended example
 
