@@ -20,8 +20,8 @@ module.exports = app => {
     },
   });
 
-  Monkey.findUser = function* () {
-    return yield app.model.User.find({ id: 1 });
+  Monkey.findUser = async function() {
+    return app.model.User.find({ id: 1 });
   };
 
   return Monkey;

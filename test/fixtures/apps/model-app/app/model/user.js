@@ -15,10 +15,10 @@ module.exports = app => {
     app.model.User.hasMany(app.model.Post, { as: 'posts', foreignKey: 'user_id' });
   };
 
-  User.test = function* () {
+  User.test = async function() {
     assert(app.config);
     assert(app.model.User === this);
-    const monkey = yield app.model.Monkey.create({ name: 'The Monkey' });
+    const monkey = await app.model.Monkey.create({ name: 'The Monkey' });
     assert(monkey.id);
     assert(monkey.isNewRecord === false);
     assert(monkey.name === 'The Monkey');
