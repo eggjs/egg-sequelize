@@ -1,4 +1,20 @@
 
+4.0.0 / 2018-08-13
+==================
+
+**features**
+  * [[`654fdf9`](http://github.com/eggjs/egg-sequelize/commit/654fdf91a82ff68d54906f122e7f6b22007074ca)] - feat: support config.ignore (dead-horse <<dead_horse@qq.com>>)
+  * [[`4c727a6`](http://github.com/eggjs/egg-sequelize/commit/4c727a66a2e7f8d0e18949bf1e90b87c2f6e217c)] - feat: support config.Sequelize (dead-horse <<dead_horse@qq.com>>)
+  * [[`86d660d`](http://github.com/eggjs/egg-sequelize/commit/86d660d5557aa33aa113c91a1468c997a7dc2cc3)] - feat: support config.datasources to define more database (dead-horse <<dead_horse@qq.com>>)
+
+**others**
+  * [[`976ab6c`](http://github.com/eggjs/egg-sequelize/commit/976ab6cf8061c7926ebbc050d835581ec4434a34)] - deps: remove unused dependencies (dead-horse <<dead_horse@qq.com>>)
+  * [[`0e59892`](http://github.com/eggjs/egg-sequelize/commit/0e598926780401379dac70a2530b844bf35b250f)] - docs: add migration in readme (dead-horse <<dead_horse@qq.com>>)
+  * [[`4d1ac62`](http://github.com/eggjs/egg-sequelize/commit/4d1ac6247e337e110be31e46d58fb6bc4c0a25ae)] - docs: add multiple datasources in readme (dead-horse <<dead_horse@qq.com>>)
+  * [[`bfd0c26`](http://github.com/eggjs/egg-sequelize/commit/bfd0c26dc451fee3a7adfc30268e3036cef8fb92)] - refactor: remove sequelize-cli integration (dead-horse <<dead_horse@qq.com>>)
+  * [[`a5670ca`](http://github.com/eggjs/egg-sequelize/commit/a5670ca8fdc5c6134bfa56a761b582eadc690f45)] - refactor: use async function and only support egg@2 (dead-horse <<dead_horse@qq.com>>)
+  * [[`e4b525e`](http://github.com/eggjs/egg-sequelize/commit/e4b525e18b0f39f517a560de7fe9bf819bddeddf)] - refactor: remove log rewrite (dead-horse <<dead_horse@qq.com>>)
+
 3.1.5 / 2018-07-03
 ==================
 
