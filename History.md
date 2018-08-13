@@ -1,4 +1,10 @@
 
+4.0.1 / 2018-08-13
+==================
+
+**fixes**
+  * [[`a165ac1`](http://github.com/eggjs/egg-sequelize/commit/a165ac18014d8d53c6b9ba0c13634a2820a7c1ba)] - fix: remove bin file (dead-horse <<dead_horse@qq.com>>)
+
 4.0.0 / 2018-08-13
 ==================
 
