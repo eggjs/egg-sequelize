@@ -7,13 +7,15 @@ module.exports = {
     'test',
     'benchmark',
   ],
+  dep: [
+    "@types/sequelize",
+  ],
   devdep: [
     'egg',
     'egg-bin',
     'autod',
     'eslint',
     'eslint-config-egg',
-    'supertest',
     'webstorm-disable-index',
   ],
   exclude: [
