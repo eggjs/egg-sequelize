@@ -37,9 +37,6 @@
     "ci": "npm run lint && npm run cov",
     "autod": "autod"
   },
-  "bin": {
-    "egg-sequelize": "bin/egg-sequelize.js"
-  },
   "files": [
     "app",
     "config",
