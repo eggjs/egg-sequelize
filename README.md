@@ -50,7 +50,7 @@ exports.sequelize = {
   password: '',
   // delegate: 'myModel', // load all models to `app[delegate]` and `ctx[delegate]`, default to `model`
   // baseDir: 'my_model', // load all files in `app/${baseDir}` as models, default to `model`
-  // ignore: 'index.js', // ignore `app/${baseDir}/index.js` when load models
+  // ignore: 'index.js', // ignore `app/${baseDir}/index.js` when load models, support glob and array
 };
 ```
 
@@ -106,7 +106,7 @@ module.exports = app => {
   });
 
   User.findByLogin = async (login) => {
-    return this.findOne({
+    return await this.findOne({
       where: {
         login: login
       }
@@ -114,7 +114,7 @@ module.exports = app => {
   }
 
   User.prototype.logSignin = async () => {
-    return this.update({ last_sign_in_at: new Date() });
+    return await this.update({ last_sign_in_at: new Date() });
   }
 
   return User;
@@ -177,7 +177,7 @@ By default, egg-sequelize will use sequelize@4, you can cusomize sequelize versi
 ```js
 // config/config.default.js
 exports.sequelize = {
-  sequelize: require('sequelize');
+  Sequelize: require('sequelize');
 };
 ```
 
@@ -252,6 +252,10 @@ module.exports = app => {
     }
   };
 ```
+
+## Migration
+
+Using [sequelize-cli](https://github.com/sequelize/cli) to help manage your database, data structures and seed data. Please read [Sequelize - Migrations](http://docs.sequelizejs.com/manual/tutorial/migrations.html) to learn more infomations.
 
 ## Recommended example
 
