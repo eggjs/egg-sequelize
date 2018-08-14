@@ -1,4 +1,10 @@
 
+4.0.2 / 2018-08-14
+==================
+
+**fixes**
+  * [[`a966ee4`](http://github.com/eggjs/egg-sequelize/commit/a966ee48809b91d896532f256fb4906ae9783a01)] - fix: fix default logging (dead-horse <<dead_horse@qq.com>>)
+
 4.0.1 / 2018-08-13
 ==================
 
