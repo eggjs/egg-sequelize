@@ -282,7 +282,7 @@ Using [sequelize-cli](https://github.com/sequelize/cli) to help manage your data
 
 ## Recommended example
 
-- https://github.com/eggjs/examples/tree/master/sequelize-example/
+- https://github.com/eggjs/examples/tree/master/sequelize/
 
 ## Questions & Suggestions
 
