@@ -38,7 +38,16 @@ $ npm install --save tedious # MSSQL
 
 ## Usage & configuration
 
-- `config.default.js`
+- Enable plugin in `config/plugin.js`
+
+``` js
+exports.sequelize = {
+  enable: true,
+  package: 'egg-sequelize'
+}
+```
+
+- Edit your own configurations in `conif/config.{env}.js`
 
 ```js
 exports.sequelize = {
@@ -51,24 +60,37 @@ exports.sequelize = {
   // delegate: 'myModel', // load all models to `app[delegate]` and `ctx[delegate]`, default to `model`
   // baseDir: 'my_model', // load all files in `app/${baseDir}` as models, default to `model`
   // ignore: 'index.js', // ignore `app/${baseDir}/index.js` when load models, support glob and array
+  // more sequelize options
 };
 ```
 
-- `config/plugin.js`
+egg-sequelize has a default sequelize options below
 
-``` js
-exports.sequelize = {
-  enable: true,
-  package: 'egg-sequelize'
-}
+```js
+{
+    delegate: 'model',
+    baseDir: 'model',
+    logging(...args) {
+      // if benchmark enabled, log used
+      const used = typeof args[1] === 'number' ? `[${args[1]}ms]` : '';
+      app.logger.info('[egg-sequelize]%s %s', used, args[0]);
+    },
+    host: 'localhost',
+    port: 3306,
+    username: 'root',
+    benchmark: true,
+    define: {
+      freezeTableName: false,
+      underscored: true,
+    },
+  };
 ```
 
-
-More documents please refer to [Sequelize.js](http://sequelize.readthedocs.io/en/v3/)
+More documents please refer to [Sequelize.js](http://docs.sequelizejs.com/manual/installation/usage.html)
 
 ## Model files
 
-Please put models under `app/model` dir.
+Please put models under `app/model` dir by default.
 
 ## Conventions
 
