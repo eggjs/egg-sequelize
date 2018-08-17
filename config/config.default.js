@@ -9,7 +9,7 @@ exports.sequelize = {
   password: '',
 
   // support customize your own Squelize
-  Sequelize: require('sequelize'), // v5 or v3
+  // Sequelize: require('sequelize'), // v5 or v3
 
   // support multi datasources by config.sequelize.datasources
   // datasources: [
