@@ -27,6 +27,7 @@ describe('test/plugin.test.js', () => {
       assert.ok(ctx.model.User);
       assert.ok(ctx.model.Monkey);
       assert.ok(ctx.model.Person);
+      assert.ok(ctx.model !== app.model);
     });
 
     it('model not load non Sequelize files', async function() {
