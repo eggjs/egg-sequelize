@@ -1,4 +1,10 @@
 
+4.0.4 / 2018-08-17
+==================
+
+**fixes**
+  * [[`708d020`](http://github.com/eggjs/egg-sequelize/commit/708d0207125cdfd99f0e968b76e42cd0440d1afd)] - fix: clean config (dead-horse <<dead_horse@qq.com>>)
+
 4.0.3 / 2018-08-17
 ==================
 
