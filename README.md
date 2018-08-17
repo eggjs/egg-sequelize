@@ -35,8 +35,9 @@ $ npm install --save pg pg-hstore # PostgreSQL
 $ npm install --save tedious # MSSQL
 ```
 
-
 ## Usage & configuration
+
+> Read the [tutorials](https://eggjs.org/en/tutorials/sequelize.html) to see a full example.
 
 - Enable plugin in `config/plugin.js`
 
