@@ -1,4 +1,16 @@
 
+4.0.3 / 2018-08-17
+==================
+
+**fixes**
+  * [[`826f512`](http://github.com/eggjs/egg-sequelize/commit/826f512d9fbb12bd9f4f256ff063fbd5ef11c250)] - fix: improve tsd (shangyu <<shangyu.lin@qq.com>>)
+
+**others**
+  * [[`174d397`](http://github.com/eggjs/egg-sequelize/commit/174d3979e1abdb42317dad6e1ff7d9937c665615)] - docs: add tutorials (dead-horse <<dead_horse@qq.com>>)
+  * [[`f1be646`](http://github.com/eggjs/egg-sequelize/commit/f1be64626959f719af32b4fbc03311bc332abe98)] - docs: fix example code path (dead-horse <<dead_horse@qq.com>>)
+  * [[`975873f`](http://github.com/eggjs/egg-sequelize/commit/975873fdb67f21655833ad6ea1fff025f0042f51)] - docs: add default sequelize options (dead-horse <<dead_horse@qq.com>>)
+  * [[`a6325bf`](http://github.com/eggjs/egg-sequelize/commit/a6325bf8a35366a3cf2bc41208043b100d4b68c1)] - chore: add sub model describe (dead-horse <<dead_horse@qq.com>>)
+
 4.0.2 / 2018-08-14
 ==================
 
