@@ -13,7 +13,7 @@ exports.sequelize = {
       baseDir: 'sequelize',
       database: 'test1',
       dialect: 'mysql',
-      ignore: 'Person.js',
+      exclude: 'Person.js',
     },
   ],
 };
