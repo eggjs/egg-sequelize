@@ -1,4 +1,10 @@
 
+4.0.7 / 2018-08-20
+==================
+
+**fixes**
+  * [[`758c5ff`](http://github.com/eggjs/egg-sequelize/commit/758c5ffbc1884709f87d0354c63e280065360b06)] - fix: avoid set sequelize.ignore by mistake (dead-horse <<dead_horse@qq.com>>)
+
 4.0.6 / 2018-08-20
 ==================
 

@@ -1,6 +1,6 @@
 {
   "name": "egg-sequelize",
-  "version": "4.0.6",
+  "version": "4.0.7",
   "description": "egg Sequelize plugin",
   "eggPlugin": {
     "name": "sequelize"
