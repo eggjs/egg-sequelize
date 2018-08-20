@@ -1,4 +1,11 @@
 
+4.0.6 / 2018-08-20
+==================
+
+**fixes**
+  * [[`a708411`](http://github.com/eggjs/egg-sequelize/commit/a70841113cbf239a547ecb5cfbb58016c41dc877)] - fix: make ctx.model or app.model configurable (dead-horse <<dead_horse@qq.com>>)
+  * [[`63a2567`](http://github.com/eggjs/egg-sequelize/commit/63a25678ac73751031b39e5651ebd5abf69bc900)] - fix: use sequelize.exclude instead of sequelize.ignore (dead-horse <<dead_horse@qq.com>>)
+
 4.0.5 / 2018-08-20
 ==================
 
