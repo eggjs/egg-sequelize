@@ -1,4 +1,11 @@
 
+4.0.5 / 2018-08-20
+==================
+
+**fixes**
+  * [[`ff2bcbe`](http://github.com/eggjs/egg-sequelize/commit/ff2bcbe1516c57217844ee75282027d1da812e25)] - fix: avoid console log display conflict (dead-horse <<dead_horse@qq.com>>)
+  * [[`a3ace2b`](http://github.com/eggjs/egg-sequelize/commit/a3ace2b0e90d156dc8fc85a9f8e5896a3bdf7cdd)] - fix: ctx.model extends app.model (dead-horse <<dead_horse@qq.com>>)
+
 4.0.4 / 2018-08-17
 ==================
 
