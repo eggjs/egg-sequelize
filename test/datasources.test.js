@@ -15,6 +15,8 @@ describe('test/datasources.test.js', () => {
   before(async () => {
     await app.model.sync({ force: true });
     await app.sequelize.sync({ force: true });
+    await app.subproperty.a.sync({ force: true });
+    await app.subproperty.b.sync({ force: true });
   });
 
   after(mm.restore);
@@ -24,6 +26,8 @@ describe('test/datasources.test.js', () => {
       assert(app.model);
       assert(app.sequelize);
       assert(app.Sequelize);
+      assert(app.subproperty.a);
+      assert(app.subproperty.b);
     });
 
     it('ctx model property getter', () => {
@@ -37,6 +41,15 @@ describe('test/datasources.test.js', () => {
       assert(ctx.sequelize.Monkey);
       assert(!ctx.sequelize.Person); // ignored
       assert(ctx.model.User !== ctx.sequelize.User);
+      assert(ctx.subproperty.a);
+      assert(ctx.subproperty.a.User);
+      assert(ctx.subproperty.a.Monkey);
+      assert(ctx.subproperty.a.Person);
+      assert(ctx.subproperty.b);
+      assert(ctx.subproperty.b.User);
+      assert(ctx.subproperty.b.Monkey);
+      assert(ctx.subproperty.b.Person);
+      assert(ctx.subproperty.a.User !== ctx.subproperty.b.User);
     });
 
     it('has right tableName', () => {
@@ -45,6 +58,8 @@ describe('test/datasources.test.js', () => {
       assert(app.model.Monkey.tableName === 'the_monkeys');
       assert(app.sequelize.User.tableName === 'users');
       assert(app.sequelize.Monkey.tableName === 'the_monkeys');
+      assert(app.subproperty.a.Monkey.tableName === 'the_monkeys');
+      assert(app.subproperty.b.Monkey.tableName === 'the_monkeys');
     });
   });
 
@@ -80,6 +95,16 @@ describe('test/datasources.test.js', () => {
       assert.ok(ctx.sequelize.User);
       assert.ok(ctx.sequelize.User.prototype.hasPosts);
       assert.ok(ctx.sequelize.Post);
+
+      assert.ok(ctx.subproperty.a);
+      assert.ok(ctx.subproperty.a.User);
+      assert.ok(ctx.subproperty.a.User.prototype.hasPosts);
+      assert.ok(ctx.subproperty.a.Post);
+
+      assert.ok(ctx.subproperty.a);
+      assert.ok(ctx.subproperty.a.User);
+      assert.ok(ctx.subproperty.a.User.prototype.hasPosts);
+      assert.ok(ctx.subproperty.a.Post);
     });
   });
 });
