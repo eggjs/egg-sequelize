@@ -15,6 +15,18 @@ exports.sequelize = {
       dialect: 'mysql',
       exclude: 'Person.js',
     },
+    {
+      delegate: 'subproperty.a',
+      baseDir: 'subproperty/a',
+      database: 'test2',
+      dialect: 'mysql',
+    },
+    {
+      delegate: 'subproperty.b',
+      baseDir: 'subproperty/b',
+      database: 'test3',
+      dialect: 'mysql',
+    },
   ],
 };
 
