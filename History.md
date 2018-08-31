@@ -1,4 +1,10 @@
 
+4.1.0 / 2018-08-31
+==================
+
+**features**
+  * [[`cc30ec2`](http://github.com/eggjs/egg-sequelize/commit/cc30ec2f8883a5e8bd3d1b200f58fe1b2d476fa8)] - feat: support subproperty for delegate (#61) (Army <<army8735@qq.com>>)
+
 4.0.7 / 2018-08-20
 ==================
 
