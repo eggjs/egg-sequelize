@@ -1,4 +1,13 @@
 
+4.2.0 / 2018-11-12
+==================
+
+**features**
+  * [[`c4998e1`](http://github.com/eggjs/egg-sequelize/commit/c4998e1c9d60596a84086f8098764fb45624cbc1)] - feat: multi datasource support load same models (#63) (Yiyu He <<dead_horse@qq.com>>)
+
+**others**
+  * [[`b41598e`](http://github.com/eggjs/egg-sequelize/commit/b41598e7c33bb03403d2a3cbfaf172911a1187dc)] - chore: logger typo (#62) (TZ | 天猪 <<atian25@qq.com>>)
+
 4.1.0 / 2018-08-31
 ==================
 
