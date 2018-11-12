@@ -111,7 +111,7 @@ Please put models under `app/model` dir by default.
 
 Define a model first.
 
-> NOTE: `app.model` is an [Instance of Sequelize](http://docs.sequelizejs.com/class/lib/sequelize.js~Sequelize.html#instance-constructor-constructor), so you can use methods like: `app.model.sync, app.model.query ...`
+> NOTE: `options.delegate` default to `model`, so `app.model` is an [Instance of Sequelize](http://docs.sequelizejs.com/class/lib/sequelize.js~Sequelize.html#instance-constructor-constructor), so you can use methods like: `app.model.sync, app.model.query ...`
 
 ```js
 // app/model/user.js
@@ -191,6 +191,67 @@ exports.sequelize = {
       // other sequelize configurations
     },
   ],
+};
+```
+
+Then we can define model like this:
+
+```js
+// app/model/user.js
+module.exports = app => {
+  const { STRING, INTEGER, DATE } = app.Sequelize;
+
+  const User = app.model.define('user', {
+    login: STRING,
+    name: STRING(30),
+    password: STRING(32),
+    age: INTEGER,
+    last_sign_in_at: DATE,
+    created_at: DATE,
+    updated_at: DATE,
+  });
+
+  return User;
+};
+
+// app/admin_model/user.js
+module.exports = app => {
+  const { STRING, INTEGER, DATE } = app.Sequelize;
+
+  const User = app.adminModel.define('user', {
+    login: STRING,
+    name: STRING(30),
+    password: STRING(32),
+    age: INTEGER,
+    last_sign_in_at: DATE,
+    created_at: DATE,
+    updated_at: DATE,
+  });
+
+  return User;
+};
+```
+
+If you define the same model for different datasource, the same model file will be excute twice for different database, so we can use the secound argument to get the sequelize instance:
+
+```js
+// app/model/user.js
+// if this file will load multiple times for different datasource
+// we can use the secound argument to get the sequelize instance
+module.exports = (app, model) => {
+  const { STRING, INTEGER, DATE } = app.Sequelize;
+
+  const User = model.define('user', {
+    login: STRING,
+    name: STRING(30),
+    password: STRING(32),
+    age: INTEGER,
+    last_sign_in_at: DATE,
+    created_at: DATE,
+    updated_at: DATE,
+  });
+
+  return User;
 };
 ```
 
