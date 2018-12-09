@@ -55,7 +55,7 @@ exports.sequelize = {
   dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
   database: 'test',
   host: 'localhost',
-  port: '3306',
+  port: 3306,
   username: 'root',
   password: '',
   // delegate: 'myModel', // load all models to `app[delegate]` and `ctx[delegate]`, default to `model`
