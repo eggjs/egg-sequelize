@@ -1,5 +1,9 @@
 import * as sequelize from "sequelize";
 
+interface DataSources {
+  [datasources]: sequelize.Options;
+}
+
 declare module 'egg' {
 
   // extend app
@@ -15,7 +19,7 @@ declare module 'egg' {
 
   // extend your config
   interface EggAppConfig {
-    sequelize: sequelize.Options;
+    sequelize: sequelize.Options | DataSources;
   }
 
 }
