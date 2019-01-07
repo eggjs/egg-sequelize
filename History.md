@@ -1,4 +1,13 @@
 
+4.3.0 / 2019-01-07
+==================
+
+**features**
+  * [[`69c5750`](http://github.com/eggjs/egg-sequelize/commit/69c57508ee6c69a765af30f99ca3d73a9c764102)] - feat: support multiple data sources config (#66) (microud <<201458501212@ytu.edu.cn>>)
+
+**others**
+  * [[`15f08dd`](http://github.com/eggjs/egg-sequelize/commit/15f08dd830ef5eda8e3988f6c1da336d03861219)] - docs: port should be number (#64) (Haoliang Gao <<sakura9515@gmail.com>>)
+
 4.2.0 / 2018-11-12
 ==================
 
