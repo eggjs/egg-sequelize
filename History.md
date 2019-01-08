@@ -1,4 +1,10 @@
 
+4.3.1 / 2019-01-08
+==================
+
+**fixes**
+  * [[`ceaa7de`](http://github.com/eggjs/egg-sequelize/commit/ceaa7de7c66bf20d0d4e5d1fce912731feb7f6f0)] - fix: fix authenticate retry (#67) (Yiyu He <<dead_horse@qq.com>>)
+
 4.3.0 / 2019-01-07
 ==================
 
