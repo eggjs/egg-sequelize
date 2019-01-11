@@ -129,7 +129,7 @@ module.exports = app => {
     updated_at: DATE,
   });
 
-  User.findByLogin = async (login) => {
+  User.findByLogin = async function(login) {
     return await this.findOne({
       where: {
         login: login
@@ -137,7 +137,8 @@ module.exports = app => {
     });
   }
 
-  User.prototype.logSignin = async () => {
+  // don't use arraw function
+  User.prototype.logSignin = async function() {
     return await this.update({ last_sign_in_at: new Date() });
   }
 
@@ -150,18 +151,16 @@ Now you can use it in your controller:
 
 ```js
 // app/controller/user.js
-module.exports = app => {
-  return class UserController extends app.Controller {
-    async index() {
-      const users = await this.ctx.model.User.findAll();
-      this.ctx.body = users;
-    }
+class UserController extends Controller {
+  async index() {
+    const users = await this.ctx.model.User.findAll();
+    this.ctx.body = users;
+  }
 
-    async show() {
-      const user = await this.ctx.model.User.findByLogin(this.ctx.params.login);
-      await user.logSignin();
-      this.ctx.body = user;
-    }
+  async show() {
+    const user = await this.ctx.model.User.findByLogin(this.ctx.params.login);
+    await user.logSignin();
+    this.ctx.body = user;
   }
 }
 ```
@@ -292,31 +291,29 @@ module.exports = app => {
 
 ```js
 // app/controller/post.js
-module.exports = app => {
-  return class PostController extends app.Controller {
-    async index() {
-      const posts = await this.ctx.model.Post.findAll({
-        attributes: [ 'id', 'user_id' ],
-        include: { model: this.ctx.model.User, as: 'user' },
-        where: { status: 'publish' },
-        order: 'id desc',
-      });
+class PostController extends Controller {
+  async index() {
+    const posts = await this.ctx.model.Post.findAll({
+      attributes: [ 'id', 'user_id' ],
+      include: { model: this.ctx.model.User, as: 'user' },
+      where: { status: 'publish' },
+      order: 'id desc',
+    });
 
-      this.ctx.body = posts;
-    }
+    this.ctx.body = posts;
+  }
 
-    async show() {
-      const post = await this.ctx.model.Post.findById(this.params.id);
-      const user = await post.getUser();
-      post.setDataValue('user', user);
-      this.ctx.body = post;
-    }
+  async show() {
+    const post = await this.ctx.model.Post.findById(this.params.id);
+    const user = await post.getUser();
+    post.setDataValue('user', user);
+    this.ctx.body = post;
+  }
 
-    async destroy() {
-      const post = await this.ctx.model.Post.findById(this.params.id);
-      await post.destroy();
-      this.ctx.body = { success: true };
-    }
+  async destroy() {
+    const post = await this.ctx.model.Post.findById(this.params.id);
+    await post.destroy();
+    this.ctx.body = { success: true };
   }
 }
 ```
@@ -329,13 +326,13 @@ module.exports = app => {
 
 ```js
 // {app_root}/app.js
-  module.exports = app => {
-    if (app.config.env === 'local' || app.config.env === 'unittest') {
-      app.beforeStart(async () => {
-        await app.model.sync({force: true});
-      });
-    }
-  };
+module.exports = app => {
+  if (app.config.env === 'local' || app.config.env === 'unittest') {
+    app.beforeStart(async () => {
+      await app.model.sync({force: true});
+    });
+  }
+};
 ```
 
 ## Migration
