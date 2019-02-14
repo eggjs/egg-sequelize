@@ -7,7 +7,7 @@ exports.sequelize = {
   port: 3306,
   username: 'root',
   password: '',
-
+  exclude: 'index.js'
   // support customize your own Squelize
   // Sequelize: require('sequelize'), // v5 or v3
 
