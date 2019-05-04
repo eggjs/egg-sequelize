@@ -3,7 +3,7 @@
 module.exports = app => {
   return class UsersController extends app.Controller {
     async show() {
-      const user = await this.ctx.model.User.findById(this.ctx.params.id);
+      const user = await this.ctx.model.User.findByPk(this.ctx.params.id);
       this.ctx.body = user;
     }
 
