@@ -1,4 +1,14 @@
 
+5.0.0 / 2019-05-10
+==================
+
+**fixes**
+  * [[`8deb42f`](http://github.com/eggjs/egg-sequelize/commit/8deb42f8d01e6982ecfdb9eff2628656f8a3c519)] - fix: fix version (dead-horse <<dead_horse@qq.com>>)
+
+**others**
+  * [[`c9f78b0`](http://github.com/eggjs/egg-sequelize/commit/c9f78b08f2d05eaa97dc5c5e807368a9c6188762)] - deps: sequelize upgrade to v5.0.0 (#71) (Akshay Kr Singh <<akshay.scythe@gmail.com>>)
+  * [[`04c9e72`](http://github.com/eggjs/egg-sequelize/commit/04c9e72ffb1b19dbfcc42275e68fe5113eb5e2fc)] - docs: fix arrow function (#68) (TZ | 天猪 <<atian25@qq.com>>)
+
 4.3.1 / 2019-01-08
 ==================
 
