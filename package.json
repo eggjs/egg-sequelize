@@ -1,6 +1,6 @@
 {
   "name": "egg-sequelize",
-  "version": "4.3.1",
+  "version": "4.4.1",
   "description": "egg Sequelize plugin",
   "eggPlugin": {
     "name": "sequelize"
@@ -15,7 +15,7 @@
   "dependencies": {
     "@types/sequelize": "^4.27.24",
     "mz-modules": "^2.1.0",
-    "sequelize": "^4.38.0"
+    "sequelize": "^5.0.0"
   },
   "devDependencies": {
     "autod": "^3.0.1",
