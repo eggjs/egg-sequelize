@@ -256,7 +256,7 @@ module.exports = (app, model) => {
 
 ### Customize Sequelize
 
-By default, egg-sequelize will use sequelize@4, you can cusomize sequelize version by pass sequelize instance with `config.sequelize.Sequelize` like this:
+By default, egg-sequelize will use sequelize@5, you can cusomize sequelize version by pass sequelize instance with `config.sequelize.Sequelize` like this:
 
 ```js
 // config/config.default.js
