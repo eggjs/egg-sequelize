@@ -1,4 +1,13 @@
 
+5.0.1 / 2019-06-11
+==================
+
+**fixes**
+  * [[`0fe964e`](http://github.com/eggjs/egg-sequelize/commit/0fe964e8f428285469513d5059b79edb39021d3c)] - fix: fix declaration error (#73) (吖猩 <<whxaxes@gmail.com>>)
+
+**others**
+  * [[`d813747`](http://github.com/eggjs/egg-sequelize/commit/d8137476aa6b593718ad67e1438d7c0086d7e63c)] - chore: fix default sequelize version in readme (#72) (Chao Xu @老干部 <<xuchao_zju@yeah.net>>)
+
 5.0.0 / 2019-05-10
 ==================
 
