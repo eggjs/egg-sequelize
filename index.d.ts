@@ -11,7 +11,7 @@ interface DataSources {
 }
 
 declare module 'egg' {
-  interface IModel extends sequelize.Sequelize, PlainObject { }
+  interface IModel extends sequelize.Sequelize { }
 
   // extend app
   interface Application {
