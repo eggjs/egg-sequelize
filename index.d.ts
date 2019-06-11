@@ -1,25 +1,27 @@
-import * as sequelize from "sequelize";
+import * as sequelize from 'sequelize';
 
 interface EggSequelizeOptions extends sequelize.Options {
   delegate?: string;
   baseDir?: string;
+  exclude?: string;
 }
 
 interface DataSources {
-  [datasources]: EggSequelizeOptions;
+  datasources: EggSequelizeOptions[];
 }
 
 declare module 'egg' {
+  interface IModel extends sequelize.Sequelize, PlainObject { }
 
   // extend app
   interface Application {
-    Sequelize: sequelize.SequelizeStatic;
-    model: sequelize.Sequelize;
+    Sequelize: typeof sequelize;
+    model: IModel;
   }
 
   // extend context
   interface Context {
-    model: sequelize.Sequelize;
+    model: IModel;
   }
 
   // extend your config
