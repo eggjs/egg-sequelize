@@ -27,7 +27,7 @@ describe('connection-uri', () => {
     });
     return app.ready();
   });
-  // before(() => app.model.sync({ force: true }));
+  before(() => app.model.sync({ force: true }));
 
   after(mm.restore);
 
