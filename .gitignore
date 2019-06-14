@@ -8,3 +8,5 @@ run
 *.swp
 test/fixtures/apps/model-app/run/
 test/fixtures/apps/ts/**/*.js
+test/fixtures/apps/connection-uri/**/*.js
+package-lock.json

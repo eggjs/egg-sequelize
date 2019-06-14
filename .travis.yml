@@ -16,3 +16,4 @@ before_install:
   - mysql -e 'CREATE DATABASE IF NOT EXISTS test1;'
   - mysql -e 'CREATE DATABASE IF NOT EXISTS test2;'
   - mysql -e 'CREATE DATABASE IF NOT EXISTS test3;'
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS test4;'

@@ -20,7 +20,7 @@
   "devDependencies": {
     "autod": "^3.0.1",
     "egg": "^2.10.0",
-    "egg-bin": "^4.8.1",
+    "egg-bin": "^4.13.1",
     "egg-mock": "^3.19.3",
     "eslint": "^5.3.0",
     "eslint-config-egg": "^7.0.0",

@@ -65,6 +65,19 @@ exports.sequelize = {
 };
 ```
 
+You can also use the `connection uri` to configure the connection:
+
+```js
+exports.sequelize = {
+  dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
+  connectionUri: 'mysql://root:@127.0.0.1:3306/test',
+  // delegate: 'myModel', // load all models to `app[delegate]` and `ctx[delegate]`, default to `model`
+  // baseDir: 'my_model', // load all files in `app/${baseDir}` as models, default to `model`
+  // exclude: 'index.js', // ignore `app/${baseDir}/index.js` when load models, support glob and array
+  // more sequelize options
+};
+```
+
 egg-sequelize has a default sequelize options below
 
 ```js

@@ -4,6 +4,7 @@ interface EggSequelizeOptions extends sequelize.Options {
   delegate?: string;
   baseDir?: string;
   exclude?: string;
+  connectionUri?: string;
 }
 
 interface DataSources {
