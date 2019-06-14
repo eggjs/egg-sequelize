@@ -1,4 +1,10 @@
 
+5.1.0 / 2019-06-14
+==================
+
+**features**
+  * [[`2632827`](http://github.com/eggjs/egg-sequelize/commit/263282739cafb22501069afe3304a8e2a76dbd7c)] - feat: :support connection uri with mysql. (#74) (Jeff <<jeff.tian@outlook.com>>)
+
 5.0.1 / 2019-06-11
 ==================
 
