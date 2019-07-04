@@ -15,7 +15,8 @@
   "dependencies": {
     "@types/sequelize": "^4.27.24",
     "mz-modules": "^2.1.0",
-    "sequelize": "^5.0.0"
+    "sequelize": "^5.0.0",
+    "snyk": "^1.189.0"
   },
   "devDependencies": {
     "autod": "^3.0.1",
@@ -35,7 +36,9 @@
     "cov": "egg-bin cov",
     "lint": "eslint .",
     "ci": "npm run lint && npm run cov",
-    "autod": "autod"
+    "autod": "autod",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "files": [
     "app",
@@ -54,5 +57,6 @@
   },
   "homepage": "https://github.com/eggjs/egg-sequelize#readme",
   "author": "jtyjty99999",
-  "license": "MIT"
+  "license": "MIT",
+  "snyk": true
 }
