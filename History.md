@@ -1,4 +1,10 @@
 
+5.2.0 / 2019-07-10
+==================
+
+**features**
+  * [[`f760569`](http://github.com/eggjs/egg-sequelize/commit/f760569891daa99c72e2ccd905038cc9125d59f2)] - feat: add model.ctx (dead-horse <<dead_horse@qq.com>>)
+
 5.1.0 / 2019-06-14
 ==================
 
