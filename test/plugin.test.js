@@ -24,6 +24,7 @@ describe('test/plugin.test.js', () => {
     it('ctx model property getter', () => {
       const ctx = app.mockContext();
       assert.ok(ctx.model);
+      assert.ok(ctx.model.ctx === ctx);
       assert.ok(ctx.model.User);
       assert.ok(ctx.model.Monkey);
       assert.ok(ctx.model.Person);
