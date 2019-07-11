@@ -1,6 +1,6 @@
 import * as sequelize from 'sequelize';
 
-interface EggSequelizeOptions extends sequelize.Options {
+export interface EggSequelizeOptions extends sequelize.Options {
   delegate?: string;
   baseDir?: string;
   exclude?: string;
