@@ -1,9 +1,26 @@
 import * as sequelize from 'sequelize';
 
 interface EggSequelizeOptions extends sequelize.Options {
+  /**
+   * load all models to `app[delegate]` and `ctx[delegate]`, default to `model`
+   */
   delegate?: string;
+
+  /**
+   * load models from `app/model/*.js`
+   */
   baseDir?: string;
-  exclude?: string;
+
+  /**
+   * ignore `app/${baseDir}/index.js` when load models, support glob and array
+   */
+  exclude?: string | Array<string>;
+
+  /**
+   * A full database URI
+   * @example
+   * `connectionUri:"mysql://localhost:3306/database"`
+   */
   connectionUri?: string;
 }
 
@@ -12,7 +29,7 @@ interface DataSources {
 }
 
 declare module 'egg' {
-  interface IModel extends sequelize.Sequelize, PlainObject { }
+  interface IModel extends sequelize.Sequelize, PlainObject {}
 
   // extend app
   interface Application {
@@ -29,5 +46,4 @@ declare module 'egg' {
   interface EggAppConfig {
     sequelize: EggSequelizeOptions | DataSources;
   }
-
 }
