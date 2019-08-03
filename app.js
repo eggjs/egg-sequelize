@@ -1,6 +1,6 @@
 'use strict';
 
 module.exports = app => {
-  require('./lib/loader')(app);
+  if (app.config.sequelize.app) require('./lib/loader')(app);
 };
 
