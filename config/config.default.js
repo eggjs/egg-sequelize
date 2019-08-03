@@ -1,6 +1,9 @@
 'use strict';
 
 exports.sequelize = {
+  app: true,
+  agent: false,
+  
   dialect: 'mysql',
   database: '',
   host: 'localhost',
