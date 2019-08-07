@@ -2,7 +2,7 @@
 
 exports.sequelize = {
   app: true,
-  agent: false,
+  agent: true,
   
   dialect: 'mysql',
   database: '',
