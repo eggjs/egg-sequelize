@@ -2,6 +2,11 @@ import * as sequelize from 'sequelize';
 
 interface EggSequelizeOptions extends sequelize.Options {
   /**
+   * support customize sequelize class, default to `require('sequelize')`
+   */
+  Sequelize?: typeof sequelize.Sequelize;
+ 
+  /**
    * load all models to `app[delegate]` and `ctx[delegate]`, default to `model`
    */
   delegate?: string;
