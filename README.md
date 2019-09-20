@@ -274,7 +274,7 @@ By default, egg-sequelize will use sequelize@5, you can cusomize sequelize versi
 ```js
 // config/config.default.js
 exports.sequelize = {
-  Sequelize: require('sequelize');
+  Sequelize: require('sequelize'),
 };
 ```
 
