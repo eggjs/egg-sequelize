@@ -28,6 +28,12 @@ interface DataSources {
   datasources: EggSequelizeOptions[];
 }
 
+declare module 'sequelize' {
+  interface Model {
+    associate(): void;
+  }
+}
+
 declare module 'egg' {
   interface IModel extends sequelize.Sequelize, PlainObject {}
 
