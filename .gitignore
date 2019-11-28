@@ -9,4 +9,5 @@ run
 test/fixtures/apps/model-app/run/
 test/fixtures/apps/ts/**/*.js
 test/fixtures/apps/connection-uri/**/*.js
+test/fixtures/apps/typescript/**/*.js
 package-lock.json

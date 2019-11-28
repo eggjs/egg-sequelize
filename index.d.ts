@@ -19,9 +19,16 @@ interface EggSequelizeOptions extends sequelize.Options {
   /**
    * A full database URI
    * @example
-   * `connectionUri:"mysql://localhost:3306/database"`
+   * `connectionUri: "mysql://localhost:3306/database"`
    */
   connectionUri?: string;
+
+  /**
+   * Customized sequelize instance
+   * @example
+   * `Sequelize: require('sequelize-typescript').Sequelize`
+   */
+  Sequelize?: any;
 }
 
 interface DataSources {

@@ -15,7 +15,8 @@
   "dependencies": {
     "@types/sequelize": "^4.27.24",
     "mz-modules": "^2.1.0",
-    "sequelize": "^5.0.0"
+    "sequelize": "^5.0.0",
+    "sequelize-typescript": "^1.0.0"
   },
   "devDependencies": {
     "autod": "^3.0.1",
@@ -24,7 +25,8 @@
     "egg-mock": "^3.19.3",
     "eslint": "^5.3.0",
     "eslint-config-egg": "^7.0.0",
-    "mysql2": "^1.6.1"
+    "mysql2": "^1.6.1",
+    "reflect-metadata": "^0.1.13"
   },
   "engines": {
     "node": ">=6.0.0"

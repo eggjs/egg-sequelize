@@ -65,6 +65,25 @@ exports.sequelize = {
 };
 ```
 
+- In case your project is typescript and you are going to use `sequelize-typescript` instead of `sequelize`, then edit your own configurations in `conif/config.{env}.ts`
+
+
+```typescript
+exports.sequelize = {
+  Sequelize: require('sequelize-typescript'),
+  dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
+  database: 'test',
+  host: 'localhost',
+  port: 3306,
+  username: 'root',
+  password: '',
+  // delegate: 'myModel', // load all models to `app[delegate]` and `ctx[delegate]`, default to `model`
+  // baseDir: 'my_model', // load all files in `app/${baseDir}` as models, default to `model`
+  // exclude: 'index.js', // ignore `app/${baseDir}/index.js` when load models, support glob and array
+  // more sequelize options
+};
+```
+
 You can also use the `connection uri` to configure the connection:
 
 ```js
@@ -126,6 +145,7 @@ Define a model first.
 
 > NOTE: `options.delegate` default to `model`, so `app.model` is an [Instance of Sequelize](http://docs.sequelizejs.com/class/lib/sequelize.js~Sequelize.html#instance-constructor-constructor), so you can use methods like: `app.model.sync, app.model.query ...`
 
+- Define model in plain js fashion:
 ```js
 // app/model/user.js
 
@@ -158,6 +178,61 @@ module.exports = app => {
   return User;
 };
 
+```
+
+- Define model in typescript fashion:
+> Before you go this way, make sure your `tsconfig.json` contains the following:
+
+```json
+{
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "strictPropertyInitialization": false
+  }
+}
+```
+
+```typescript
+// app/model/user.ts
+
+import {Column, Model, Table, DataType} from 'sequelize-typescript'
+
+@Table({
+  tableName: 'user',
+})
+class User extends Model<User> {
+  @Column(DataType.STRING)
+  login: string
+
+  @Column(DataType.STRING(30))
+  name: string
+
+  @Column(DataType.STRING(32))
+  password: string
+
+  @Column(DataType.INTEGER)
+  age: number
+
+  @Column(DataType.DATE)
+  last_sign_in_at: Date
+
+  @Column(DataType.DATE)
+  created_at: Date
+
+  @Column(DataType.DATE)
+  updated_at: Date
+
+  static async findByLogin(login: string) {
+    return await this.findOne({where:{login}})  
+  }
+
+  async logSignin() {
+    return await this.update({ last_sign_in_at: new Date() });
+  }
+}
+
+export default () => User
 ```
 
 Now you can use it in your controller:
@@ -301,7 +376,6 @@ module.exports = app => {
 };
 ```
 
-
 ```js
 // app/controller/post.js
 class PostController extends Controller {
@@ -359,6 +433,17 @@ Using [sequelize-cli](https://github.com/sequelize/cli) to help manage your data
 ## Questions & Suggestions
 
 Please open an issue [here](https://github.com/eggjs/egg/issues).
+
+## Contribution
+
+### Run test locally
+Testing needs connecting to databases, on TravisCI this is addressed by claiming `mysql` services. To run test locally, `docker` is recommended installed first, then
+
+```shell script
+sh test.sh
+``` 
+
+which will start a `mysql` container and create relevant databases.
 
 ## License
 
