@@ -47,6 +47,8 @@ describe('typescript form 2', () => {
     assert.ok(ctx.model);
     assert.ok(ctx.model.User);
     assert.ok(ctx.model.Monkey);
+    const res = await app.model.User.destroy({ truncate: true, force: true });
+    assert.ok(typeof res === 'number');
     assert.ok(ctx.model !== app.model);
   });
 });

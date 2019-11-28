@@ -1,4 +1,5 @@
-import {Column, DataType, Model, Table} from "sequelize-typescript";
+import {Column, DataType, Model, Table, Sequelize} from "sequelize-typescript";
+import {Application} from "egg";
 
 @Table({
     tableName: 'the_monkeys'
@@ -24,4 +25,8 @@ class Monkey extends Model<Monkey> {
     }
 }
 
-export default () => Monkey
+export default (_: Application, sequelize: Sequelize) => {
+    sequelize.addModels([Monkey])
+
+    return Monkey;
+}
