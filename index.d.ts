@@ -24,11 +24,11 @@ interface EggSequelizeOptions extends sequelize.Options {
   connectionUri?: string;
 
   /**
-   * Customized sequelize instance
+   * support customizing sequelize class, default to `require('sequelize')`
    * @example
    * `Sequelize: require('sequelize-typescript').Sequelize`
    */
-  Sequelize?: any;
+  Sequelize?: typeof sequelize.Sequelize;
 }
 
 interface DataSources {
