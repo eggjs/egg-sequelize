@@ -1,4 +1,10 @@
 
+5.2.2 / 2020-07-01
+==================
+
+**fixes**
+  * [[`665bbd6`](http://github.com/eggjs/egg-sequelize/commit/665bbd6ce3bee55ba3f7024a701cf5f1b87f1f21)] - fix: exception when change your config.delegate to other name, you will get an TypeError (#84) (bianchui <<bianchui@gmail.com>>)
+
 5.2.1 / 2019-12-25
 ==================
 
