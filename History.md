@@ -1,4 +1,14 @@
 
+5.2.1 / 2019-12-25
+==================
+
+**fixes**
+  * [[`c2c9cf6`](http://github.com/eggjs/egg-sequelize/commit/c2c9cf693e96da31d32d478134cb67743608951f)] - fix: retry when db is busy. (#85) (金炳 <<1520006273@qq.com>>)
+  * [[`47e9550`](http://github.com/eggjs/egg-sequelize/commit/47e955058340df7f984d1a206c2af9e4fd1491fd)] - fix: README.md (#81) (zfx <<502545703@qq.com>>)
+
+**others**
+  * [[`683298d`](http://github.com/eggjs/egg-sequelize/commit/683298dde706b34bdbdb6abd0cab6a7164495967)] - docs: add comment in index.d.ts (#78) (supperchong <<2267805901@qq.com>>)
+
 5.2.0 / 2019-07-10
 ==================
 
