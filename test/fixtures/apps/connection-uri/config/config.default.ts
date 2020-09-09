@@ -7,6 +7,8 @@ export default (appInfo: EggAppInfo) => {
   config.keys = '123123';
 
   config.sequelize = {
+    app: true,
+    agent: true,
   }
 
   return config;
