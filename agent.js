@@ -1,5 +1,7 @@
 'use strict';
 
 module.exports = agent => {
-  require('./lib/loader')(agent);
+  if (agent.config.sequelize.agent) {
+    require('./lib/loader')(agent);
+  }
 };
