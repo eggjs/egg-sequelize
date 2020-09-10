@@ -82,6 +82,8 @@ egg-sequelize has a default sequelize options below
 
 ```js
 {
+    app: true,
+    agent: true,
     delegate: 'model',
     baseDir: 'model',
     logging(...args) {
@@ -363,4 +365,3 @@ Please open an issue [here](https://github.com/eggjs/egg/issues).
 ## License
 
 [MIT](LICENSE)
-
