@@ -52,6 +52,8 @@ exports.sequelize = {
 
 ```js
 exports.sequelize = {
+  app: true, // load sequelize in app(worker)
+  agent: true, // load sequelize in agent
   dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
   database: 'test',
   host: 'localhost',
@@ -82,9 +84,7 @@ egg-sequelize has a default sequelize options below
 
 ```js
 {
-    // load sequelize in app(worker)
     app: true,
-    // load sequelize in agent
     agent: true,
     delegate: 'model',
     baseDir: 'model',
