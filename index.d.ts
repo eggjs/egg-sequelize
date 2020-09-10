@@ -24,7 +24,7 @@ interface EggSequelizeOptions extends sequelize.Options {
   connectionUri?: string;
 
   /**
-   * Load sequelize in worker
+   * Load sequelize in app(worker)
    * @default true
    */
   app?: boolean;

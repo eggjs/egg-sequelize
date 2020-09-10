@@ -82,7 +82,9 @@ egg-sequelize has a default sequelize options below
 
 ```js
 {
+    // load sequelize in app(worker)
     app: true,
+    // load sequelize in agent
     agent: true,
     delegate: 'model',
     baseDir: 'model',
