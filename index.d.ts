@@ -22,6 +22,18 @@ interface EggSequelizeOptions extends sequelize.Options {
    * `connectionUri:"mysql://localhost:3306/database"`
    */
   connectionUri?: string;
+
+  /**
+   * Load sequelize in app(worker)
+   * @default true
+   */
+  app?: boolean;
+
+  /**
+   * Load sequelize in agent
+   * @default true
+   */
+  agent?: boolean;
 }
 
 interface DataSources {
