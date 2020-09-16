@@ -1,4 +1,13 @@
 
+6.0.0 / 2020-09-16
+==================
+
+**features**
+  * [[`f585da5`](http://github.com/eggjs/egg-sequelize/commit/f585da5eb7fd22062127c71933ae8b01c88a3623)] - feat: update sequelize to version 6 (#87) (wangzhilongh <<wangzhilongh@163.com>>)
+
+**others**
+  * [[`b14752b`](http://github.com/eggjs/egg-sequelize/commit/b14752b3dfabdf00eaa1e5193e3edcc024042f46)] - build: test on node 10,12,14 (dead-horse <<dead_horse@qq.com>>)
+
 5.2.2 / 2020-07-01
 ==================
 
