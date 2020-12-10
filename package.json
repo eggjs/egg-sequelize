@@ -1,6 +1,6 @@
 {
   "name": "egg-sequelize",
-  "version": "5.2.0",
+  "version": "6.0.0",
   "description": "egg Sequelize plugin",
   "eggPlugin": {
     "name": "sequelize"
@@ -15,8 +15,8 @@
   "dependencies": {
     "@types/sequelize": "^4.27.24",
     "mz-modules": "^2.1.0",
-    "sequelize": "^5.0.0",
-    "sequelize-typescript": "^1.0.0"
+    "sequelize-typescript": "^1.0.0",
+    "sequelize": "^6.0.0"
   },
   "devDependencies": {
     "autod": "^3.0.1",
@@ -29,7 +29,7 @@
     "reflect-metadata": "^0.1.13"
   },
   "engines": {
-    "node": ">=6.0.0"
+    "node": ">=10.0.0"
   },
   "scripts": {
     "test": "npm run lint -- --fix && npm run test-local",

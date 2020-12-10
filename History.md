@@ -1,4 +1,29 @@
 
+6.0.0 / 2020-09-16
+==================
+
+**features**
+  * [[`f585da5`](http://github.com/eggjs/egg-sequelize/commit/f585da5eb7fd22062127c71933ae8b01c88a3623)] - feat: update sequelize to version 6 (#87) (wangzhilongh <<wangzhilongh@163.com>>)
+
+**others**
+  * [[`b14752b`](http://github.com/eggjs/egg-sequelize/commit/b14752b3dfabdf00eaa1e5193e3edcc024042f46)] - build: test on node 10,12,14 (dead-horse <<dead_horse@qq.com>>)
+
+5.2.2 / 2020-07-01
+==================
+
+**fixes**
+  * [[`665bbd6`](http://github.com/eggjs/egg-sequelize/commit/665bbd6ce3bee55ba3f7024a701cf5f1b87f1f21)] - fix: exception when change your config.delegate to other name, you will get an TypeError (#84) (bianchui <<bianchui@gmail.com>>)
+
+5.2.1 / 2019-12-25
+==================
+
+**fixes**
+  * [[`c2c9cf6`](http://github.com/eggjs/egg-sequelize/commit/c2c9cf693e96da31d32d478134cb67743608951f)] - fix: retry when db is busy. (#85) (金炳 <<1520006273@qq.com>>)
+  * [[`47e9550`](http://github.com/eggjs/egg-sequelize/commit/47e955058340df7f984d1a206c2af9e4fd1491fd)] - fix: README.md (#81) (zfx <<502545703@qq.com>>)
+
+**others**
+  * [[`683298d`](http://github.com/eggjs/egg-sequelize/commit/683298dde706b34bdbdb6abd0cab6a7164495967)] - docs: add comment in index.d.ts (#78) (supperchong <<2267805901@qq.com>>)
+
 5.2.0 / 2019-07-10
 ==================
 
