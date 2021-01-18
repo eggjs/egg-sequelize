@@ -9,7 +9,7 @@ interface EggSequelizeOptions extends sequelize.Options {
   /**
    * load models from `app/model/*.js`
    */
-  baseDir?: string;
+  baseDir?: string | Array<string>;
 
   /**
    * ignore `app/${baseDir}/index.js` when load models, support glob and array
