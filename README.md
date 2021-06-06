@@ -48,7 +48,7 @@ exports.sequelize = {
 }
 ```
 
-- Edit your own configurations in `conif/config.{env}.js`
+- Edit your own configurations in `config/config.{env}.js`
 
 ```js
 exports.sequelize = {
