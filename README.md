@@ -48,7 +48,7 @@ exports.sequelize = {
 }
 ```
 
-- Edit your own configurations in `conif/config.{env}.js`
+- Edit your own configurations in `config/config.{env}.js`
 
 ```js
 exports.sequelize = {
@@ -150,7 +150,7 @@ module.exports = app => {
     });
   }
 
-  // don't use arraw function
+  // don't use arrow function
   User.prototype.logSignin = async function() {
     return await this.update({ last_sign_in_at: new Date() });
   }
@@ -197,7 +197,7 @@ exports.sequelize = {
       // other sequelize configurations
     },
     {
-      delegate: 'admninModel', // load all models to app.adminModel and ctx.adminModel
+      delegate: 'adminModel', // load all models to app.adminModel and ctx.adminModel
       baseDir: 'admin_model', // load models from `app/admin_model/*.js`
       database: 'admin',
       // other sequelize configurations
@@ -244,12 +244,12 @@ module.exports = app => {
 };
 ```
 
-If you define the same model for different datasource, the same model file will be excute twice for different database, so we can use the secound argument to get the sequelize instance:
+If you define the same model for different datasource, the same model file will be execute twice for different database, so we can use the second argument to get the sequelize instance:
 
 ```js
 // app/model/user.js
 // if this file will load multiple times for different datasource
-// we can use the secound argument to get the sequelize instance
+// we can use the second argument to get the sequelize instance
 module.exports = (app, model) => {
   const { STRING, INTEGER, DATE } = app.Sequelize;
 
@@ -269,7 +269,7 @@ module.exports = (app, model) => {
 
 ### Customize Sequelize
 
-By default, egg-sequelize will use sequelize@5, you can cusomize sequelize version by pass sequelize instance with `config.sequelize.Sequelize` like this:
+By default, egg-sequelize will use sequelize@5, you can customize sequelize version by pass sequelize instance with `config.sequelize.Sequelize` like this:
 
 ```js
 // config/config.default.js
@@ -350,7 +350,7 @@ module.exports = app => {
 
 ## Migration
 
-Using [sequelize-cli](https://github.com/sequelize/cli) to help manage your database, data structures and seed data. Please read [Sequelize - Migrations](http://docs.sequelizejs.com/manual/tutorial/migrations.html) to learn more infomations.
+Using [sequelize-cli](https://github.com/sequelize/cli) to help manage your database, data structures and seed data. Please read [Sequelize - Migrations](http://docs.sequelizejs.com/manual/tutorial/migrations.html) to learn more information.
 
 ## Recommended example
 
